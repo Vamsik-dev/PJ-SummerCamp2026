@@ -498,26 +498,63 @@ function saveUrl(){
 }
 
 // ─── TIMETABLE ───────────────────────────────────────────────────
-const DAYS_KEY=['mon','tue','wed','thu','fri'];
-const DAYS_LBL=['Monday','Tuesday','Wednesday','Thursday','Friday'];
+// Days are read dynamically from data — supports any number of columns
+// Each row object has: {time, days:['Monday','Tuesday',...], slots:['val1','val2',...]}
+// Apps Script returns rows with a 'days' array and 'slots' array.
+// For backward compat we also handle the old {mon,tue,...} key format.
+
+function getDayCols(data){
+  // Returns array of day names from first row of data
+  if(!data||!data.length) return ['Monday','Tuesday','Wednesday','Thursday','Friday'];
+  const row=data[0];
+  if(row.days) return row.days;
+  // old key format fallback
+  const known=['mon','tue','wed','thu','fri','sat','sun'];
+  return known.filter(k=>k in row).map(k=>k.charAt(0).toUpperCase()+k.slice(1));
+}
+
+function getSlotVal(row, dayName){
+  // Support both new {days,slots} format and old {mon,tue,...} format
+  if(row.days && row.slots){
+    const i=row.days.indexOf(dayName);
+    return i>=0 ? row.slots[i] : '';
+  }
+  const k=dayName.slice(0,3).toLowerCase();
+  return row[k]||'';
+}
 
 function renderTT(id,data,kid){
+  if(!data||!data.length) return;
+  const days=getDayCols(data);
+
+  // Update thead dynamically
+  const table=document.getElementById(id).closest('table');
+  const thead=table.querySelector('thead tr');
+  thead.innerHTML='<th>Time</th>'+days.map(d=>`<th>${d}</th>`).join('');
+
   const tb=document.getElementById(id); tb.innerHTML='';
   data.forEach((row,ri)=>{
     const tr=document.createElement('tr');
-    let html=`<td class="tcol">${row.time}</td>`;
-    DAYS_KEY.forEach((dk,di)=>{
-      const val=row[dk]||'';
+    let html=`<td class="tcol">${row.time||''}</td>`;
+    days.forEach(day=>{
+      const val=getSlotVal(row,day);
       const sc=SLOT_STYLE(val)||(kid==='jk'?'s-jk':'s-pk');
       html+=`<td><span class="slot ${sc}" contenteditable="true"
-        onblur="updateTT('${kid}',${ri},'${dk}',this.textContent.trim())">${val}</span></td>`;
+        onblur="updateTT('${kid}',${ri},'${day}',this.textContent.trim())">${val}</span></td>`;
     });
     tr.innerHTML=html; tb.appendChild(tr);
   });
 }
 
-function updateTT(kid,ri,dk,val){
-  if(kid==='jk') ttJK[ri][dk]=val; else ttPK[ri][dk]=val;
+function updateTT(kid,ri,dayName,val){
+  const data=kid==='jk'?ttJK:ttPK;
+  const row=data[ri];
+  if(row.days && row.slots){
+    const i=row.days.indexOf(dayName);
+    if(i>=0) row.slots[i]=val; else { row.days.push(dayName); row.slots.push(val); }
+  } else {
+    row[dayName.slice(0,3).toLowerCase()]=val;
+  }
   push('saveTimetable',{jk:ttJK,pk:ttPK});
 }
 
