@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JK & PK — Summer 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#faf7f2;--warm:#fff9f4;--ink:#1a1612;--ink-l:#4a4440;--ink-m:#9a8f88;
+  --jk:#2d5a8e;--jk-l:#e8f0f9;--jk-m:#b8d0ea;
+  --pk:#2e7d5e;--pk-l:#e4f4ed;--pk-m:#a8d9c4;
+  --acc:#c4572a;--acc-l:#faeae3;
+  --gold:#7a5c00;--gold-l:#fdf6e3;--gold-m:#f0d87a;
+  --bd:#e8e0d8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);}
+
+/* SETUP BANNER */
+#setup-banner{background:#1a1612;color:var(--cream);overflow:hidden;max-height:0;transition:max-height .4s ease;}
+#setup-banner.open{max-height:700px;}
+.sb-inner{max-width:960px;margin:0 auto;padding:1.5rem;}
+.sb-inner h3{font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:1rem;}
+.sb-step{display:flex;gap:10px;margin-bottom:.9rem;}
+.sb-num{background:var(--acc);color:#fff;border-radius:50%;width:20px;height:20px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;margin-top:1px;}
+.sb-text{font-size:12px;line-height:1.7;color:#c8c0b8;}
+.sb-text code{background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px;font-family:monospace;font-size:11px;}
+.sb-text a{color:var(--gold-m);}
+.url-row{display:flex;gap:8px;margin-top:.75rem;}
+.url-row input{flex:1;padding:7px 10px;border-radius:7px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:13px;font-family:'DM Sans',sans-serif;}
+.url-row input::placeholder{color:rgba(255,255,255,.3);}
+.url-row button{padding:7px 14px;background:var(--acc);border:none;border-radius:7px;color:#fff;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;}
+.url-ok{font-size:11px;color:var(--pk-m);margin-top:4px;}
+
+/* HEADER */
+header{background:var(--ink);color:var(--cream);padding:1.75rem 1.25rem 1.5rem;position:relative;overflow:hidden;}
+header::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:var(--acc);opacity:.1;}
+header::after{content:'';position:absolute;bottom:-50px;left:38%;width:130px;height:130px;border-radius:50%;background:var(--jk);opacity:.12;}
+.hdr{position:relative;z-index:1;max-width:960px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;}
+.hdr-lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-m);margin-bottom:.3rem;}
+h1{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3.5vw,1.9rem);line-height:1.15;}
+.hdr-meta{display:flex;gap:7px;margin-top:.6rem;flex-wrap:wrap;}
+.mpill{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.13);border-radius:14px;padding:2px 10px;font-size:11px;color:#b8b0a8;}
+.hdr-r{display:flex;flex-direction:column;align-items:flex-end;gap:7px;}
+.kid-badges{display:flex;gap:7px;}
+.kb{padding:5px 12px;border-radius:16px;font-size:12px;font-weight:500;}
+.kb-jk{background:var(--jk);color:#fff;}
+.kb-pk{background:var(--pk);color:#fff;}
+.setup-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:7px;padding:4px 11px;font-size:11px;color:#c8c0b8;cursor:pointer;font-family:'DM Sans',sans-serif;}
+#sync-st{font-size:10px;color:var(--ink-m);}
+#sync-st.ok{color:#a8d9c4;}
+#sync-st.err{color:#f08080;}
+
+/* NAV */
+.nav{background:var(--warm);border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:100;}
+.nav-i{max-width:960px;margin:0 auto;display:flex;overflow-x:auto;}
+.tab{padding:.85rem 1.1rem;font-size:13px;font-weight:500;color:var(--ink-m);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s;user-select:none;}
+.tab:hover{color:var(--ink);}
+.tab.active{color:var(--acc);border-bottom-color:var(--acc);}
+
+/* MAIN */
+main{max-width:960px;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+.sec{display:none;}
+.sec.active{display:block;}
+.sec-hdr{margin-bottom:1.2rem;}
+.sec-hdr h2{font-family:'Playfair Display',serif;font-size:1.35rem;}
+.sec-hdr p{font-size:12px;color:var(--ink-m);margin-top:3px;}
+
+/* GRID */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+@media(max-width:580px){.g2{grid-template-columns:1fr;}}
+
+/* CARD */
+.card{background:var(--warm);border:1px solid var(--bd);border-radius:11px;overflow:hidden;}
+.ch{padding:9px 13px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--bd);}
+.ch-jk{background:var(--jk-l);}
+.ch-pk{background:var(--pk-l);}
+.ch-both{background:linear-gradient(to right,var(--jk-l),var(--pk-l));}
+.ch-gold{background:var(--gold-l);border-bottom-color:var(--gold-m);}
+.ctag{font-size:10px;padding:2px 7px;border-radius:9px;font-weight:500;}
+.ctag-jk{background:var(--jk);color:#fff;}
+.ctag-pk{background:var(--pk);color:#fff;}
+.ctag-gold{background:var(--gold-m);color:var(--gold);}
+.ct{font-size:13px;font-weight:500;}
+.cb{padding:11px 13px;}
+.wlbl{font-size:10px;font-weight:500;color:var(--ink-m);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px;}
+.wval{font-size:12px;color:var(--ink-l);line-height:1.6;}
+.cdiv{border:none;border-top:1px solid var(--bd);margin:7px 0;}
+
+/* TIMETABLE */
+.kid-block{margin-bottom:1.75rem;}
+.kid-hdr{display:flex;align-items:center;gap:9px;margin-bottom:.65rem;}
+.kdot{width:8px;height:8px;border-radius:50%;}
+.kdot-jk{background:var(--jk);}
+.kdot-pk{background:var(--pk);}
+.ktitle{font-size:13px;font-weight:500;}
+.ksub{font-size:11px;color:var(--ink-m);}
+.tt-wrap{border-radius:9px;overflow:hidden;border:1px solid var(--bd);}
+.tt{width:100%;border-collapse:collapse;font-size:11.5px;}
+.tt th{background:var(--ink);color:var(--cream);padding:7px 8px;text-align:left;font-size:10px;letter-spacing:.04em;font-weight:500;}
+.tt td{padding:7px 8px;border-bottom:1px solid var(--bd);vertical-align:top;}
+.tt tr:last-child td{border-bottom:none;}
+.tt tr:hover td{background:rgba(0,0,0,.02);}
+.tcol{color:var(--ink-m);font-size:10px;font-weight:500;white-space:nowrap;width:80px;}
+.slot{border-radius:5px;padding:3px 6px;font-size:11px;font-weight:500;display:inline-block;cursor:text;}
+.s-jk{background:var(--jk-l);color:var(--jk);}
+.s-pk{background:var(--pk-l);color:var(--pk);}
+.s-both{background:var(--acc-l);color:var(--acc);}
+.s-brk{background:#f0ede8;color:var(--ink-m);}
+.s-exp{background:var(--gold-l);color:var(--gold);border:1px solid var(--gold-m);}
+.lgd{display:flex;gap:9px;flex-wrap:wrap;margin-top:.65rem;}
+.lgi{display:flex;align-items:center;gap:4px;font-size:10.5px;color:var(--ink-m);}
+.lgd-dot{width:7px;height:7px;border-radius:2px;}
+
+/* EDITABLE */
+[contenteditable="true"]:focus{outline:2px solid var(--acc);border-radius:3px;background:#fff;}
+
+/* MENU */
+.menu-sec-title{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-m);margin:1.25rem 0 .55rem;padding-bottom:4px;border-bottom:1px solid var(--bd);}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:9px;margin-bottom:.5rem;}
+.menu-card{background:var(--warm);border:1px solid var(--bd);border-radius:9px;padding:11px;}
+.mday{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-m);margin-bottom:5px;}
+.mmain{font-size:12.5px;font-weight:500;margin-bottom:2px;}
+.mnote{font-size:11px;color:var(--ink-m);line-height:1.4;}
+
+/* RESOURCES */
+.res-sec{margin-bottom:1.4rem;}
+.res-sec-title{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-m);margin-bottom:.55rem;padding-bottom:3px;border-bottom:1px solid var(--bd);}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:9px;}
+.res-card{background:var(--warm);border:1px solid var(--bd);border-radius:9px;padding:11px;}
+.rfor{font-size:10px;padding:1px 6px;border-radius:8px;font-weight:500;display:inline-block;margin-bottom:4px;}
+.rf-jk{background:var(--jk-l);color:var(--jk);}
+.rf-pk{background:var(--pk-l);color:var(--pk);}
+.rf-both{background:var(--acc-l);color:var(--acc);}
+.rname{font-size:12.5px;font-weight:500;margin-bottom:3px;}
+.rlink{font-size:11px;color:var(--jk);text-decoration:none;display:inline-flex;align-items:center;gap:3px;}
+.rlink:hover{text-decoration:underline;}
+.gdoc-chip{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--pk);background:var(--pk-l);padding:2px 8px;border-radius:6px;text-decoration:none;margin-top:3px;}
+.gdoc-chip:hover{background:var(--pk-m);}
+.yt-chip{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:#c00;background:#fff0f0;padding:2px 8px;border-radius:6px;text-decoration:none;margin-top:3px;}
+.ra-btn{font-size:10px;padding:2px 7px;border-radius:5px;border:1px solid var(--bd);background:none;cursor:pointer;color:var(--ink-m);font-family:'DM Sans',sans-serif;margin-top:5px;}
+.ra-btn:hover{color:var(--acc);border-color:var(--acc);}
+
+/* TRACKER */
+.wsel{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem;}
+.wb{padding:5px 11px;border-radius:14px;border:1px solid var(--bd);background:#fff;font-size:12px;cursor:pointer;color:var(--ink-m);font-family:'DM Sans',sans-serif;transition:all .15s;}
+.wb.active{background:var(--ink);color:var(--cream);border-color:var(--ink);}
+.tc{background:var(--warm);border:1px solid var(--bd);border-radius:11px;overflow:hidden;}
+.th{padding:9px 13px;font-size:13px;font-weight:500;display:flex;justify-content:space-between;align-items:center;}
+.th-jk{background:var(--jk-l);border-bottom:1px solid var(--jk-m);color:var(--jk);}
+.th-pk{background:var(--pk-l);border-bottom:1px solid var(--pk-m);color:var(--pk);}
+.tb{padding:7px 13px;}
+.trow{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--bd);}
+.trow:last-child{border-bottom:none;}
+.tname{font-size:12px;font-weight:500;flex:1;}
+.ttype{font-size:10px;color:var(--ink-m);}
+.tr-r{display:flex;align-items:center;gap:7px;}
+.pb-w{width:44px;height:4px;background:var(--bd);border-radius:3px;overflow:hidden;}
+.pb{height:100%;border-radius:3px;transition:width .3s;}
+.pb-jk{background:var(--jk);}
+.pb-pk{background:var(--pk);}
+.stars{display:flex;gap:3px;}
+.star{width:19px;height:19px;border-radius:50%;border:1.5px solid var(--bd);background:#fff;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;font-size:8px;color:transparent;user-select:none;}
+.star.f1{background:#ffeaa0;border-color:#f0c040;color:#7a5c00;}
+.star.f2{background:#ffd166;border-color:#e0a020;color:#5a3c00;}
+.star.f3{background:#f4a261;border-color:#d97a30;color:#3a1800;}
+.tnote{width:100%;margin-top:3px;padding:4px 6px;font-size:11px;border:1px solid var(--bd);border-radius:5px;font-family:'DM Sans',sans-serif;color:var(--ink-l);resize:none;}
+.tnote:focus{outline:1px solid var(--acc);}
+
+/* BUTTONS / MISC */
+.add-btn{padding:6px 13px;background:var(--warm);border:1px dashed var(--bd);border-radius:7px;font-size:12px;color:var(--ink-m);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.add-btn:hover{border-color:var(--acc);color:var(--acc);}
+.save-btn{padding:7px 18px;background:var(--ink);color:#fff;border:none;border-radius:7px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.save-btn:hover{background:#2e2a26;}
+.ok-msg{font-size:12px;color:var(--pk);display:none;}
+.save-row{display:flex;align-items:center;gap:10px;margin-top:1rem;}
+
+/* MODAL */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:500;align-items:center;justify-content:center;}
+.overlay.open{display:flex;}
+.modal{background:#fff;border-radius:13px;padding:1.4rem;width:min(460px,92vw);max-height:85vh;overflow-y:auto;}
+.modal h3{font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:.9rem;}
+.fl{margin-bottom:.7rem;}
+.fl label{font-size:12px;font-weight:500;color:var(--ink-l);display:block;margin-bottom:3px;}
+.fi{width:100%;padding:7px 9px;border:1px solid var(--bd);border-radius:7px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--ink);}
+.fi:focus{outline:2px solid var(--acc);border-color:transparent;}
+.mbtns{display:flex;justify-content:flex-end;gap:7px;margin-top:.9rem;}
+.btn-c{padding:6px 14px;background:none;border:1px solid var(--bd);border-radius:7px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.btn-s{padding:6px 14px;background:var(--ink);color:#fff;border:none;border-radius:7px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;}
+</style>
+</head>
+<body>
+
+<!-- SETUP BANNER -->
+<div id="setup-banner">
+  <div class="sb-inner">
+    <h3>Connect to Google Sheets — one-time setup</h3>
+    <div class="sb-step"><div class="sb-num">1</div><div class="sb-text">Create a blank <a href="https://sheets.google.com" target="_blank">Google Sheet</a>. Share it with both parents as Editor. Go to <strong>Extensions → Apps Script</strong>, paste the <code>apps_script.gs</code> file, click Save.</div></div>
+    <div class="sb-step"><div class="sb-num">2</div><div class="sb-text"><strong>Deploy → New deployment → Web app.</strong> Set Execute as: <em>Me</em>, Who has access: <em>Anyone</em>. Deploy, authorize, then copy the Web App URL.</div></div>
+    <div class="sb-step"><div class="sb-num">3</div><div class="sb-text">Open the Web App URL once in your browser with <code>?action=initSheets</code> appended — this auto-creates all 6 sheet tabs with default data.</div></div>
+    <div class="sb-step"><div class="sb-num">4</div><div class="sb-text">Paste the Web App URL below. Do this on both parents' devices — data always syncs through your shared Sheet.</div></div>
+    <div class="url-row">
+      <input id="url-in" type="text" placeholder="https://script.google.com/macros/s/.../exec" />
+      <button onclick="saveUrl()">Save & connect</button>
+    </div>
+    <div class="url-ok" id="url-ok"></div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="hdr">
+    <div>
+      <div class="hdr-lbl">Home Summer Program</div>
+      <h1>JK & PK — Summer 2026</h1>
+      <div class="hdr-meta">
+        <span class="mpill">6 weeks</span>
+        <span class="mpill">Mon – Fri</span>
+        <span class="mpill">4–5 hrs / day</span>
+      </div>
+    </div>
+    <div class="hdr-r">
+      <div class="kid-badges">
+        <div class="kb kb-jk">JK · 10 yrs</div>
+        <div class="kb kb-pk">PK · 6 yrs</div>
+      </div>
+      <button class="setup-btn" onclick="toggleSetup()">⚙ Setup / connect Sheet</button>
+      <div id="sync-st">Not connected</div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-i">
+    <div class="tab active" onclick="showSec('timetable',this)">Timetable</div>
+    <div class="tab" onclick="showSec('curriculum',this)">Curriculum</div>
+    <div class="tab" onclick="showSec('menu',this)">Daily menu</div>
+    <div class="tab" onclick="showSec('resources',this)">Resources & links</div>
+    <div class="tab" onclick="showSec('tracker',this)">Progress tracker</div>
+  </div>
+</nav>
+
+<main>
+
+<!-- TIMETABLE -->
+<div id="timetable" class="sec active">
+  <div class="sec-hdr"><h2>Weekly timetable</h2><p>Click any slot to edit. Saves to your Google Sheet automatically.</p></div>
+  <div class="kid-block">
+    <div class="kid-hdr"><div class="kdot kdot-jk"></div><div><div class="ktitle">JK — 10 yrs</div><div class="ksub">Creative writing · Sangeetham · Drawing · Math bridge · Public speaking · Robotics · Chess · Sports · GK</div></div></div>
+    <div class="tt-wrap"><table class="tt"><thead><tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr></thead><tbody id="tt-jk"></tbody></table></div>
+  </div>
+  <div class="kid-block">
+    <div class="kid-hdr"><div class="kdot kdot-pk"></div><div><div class="ktitle">PK — 6 yrs</div><div class="ksub">Creative writing · Story circle · Drawing · Shlokas · Sangeetham/Piano · Math bridge · GK · Around the world · Sports</div></div></div>
+    <div class="tt-wrap"><table class="tt"><thead><tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr></thead><tbody id="tt-pk"></tbody></table></div>
+  </div>
+  <div class="lgd">
+    <div class="lgi"><div class="lgd-dot" style="background:var(--jk)"></div>JK</div>
+    <div class="lgi"><div class="lgd-dot" style="background:var(--pk)"></div>PK</div>
+    <div class="lgi"><div class="lgd-dot" style="background:var(--acc)"></div>Both</div>
+    <div class="lgi"><div class="lgd-dot" style="background:var(--gold-m)"></div>Expert class</div>
+    <div class="lgi"><div class="lgd-dot" style="background:#d8d4ce"></div>Break</div>
+  </div>
+</div>
+
+<!-- CURRICULUM -->
+<div id="curriculum" class="sec">
+  <div class="sec-hdr"><h2>6-week curriculum</h2><p>Click any text to edit inline. Saves to Sheet on blur.</p></div>
+  <div class="g2" id="curr-grid"></div>
+</div>
+
+<!-- MENU -->
+<div id="menu" class="sec">
+  <div class="sec-hdr"><h2>Daily summer menu</h2><p>Click any meal to edit. Add new meals with the button below.</p></div>
+  <div class="menu-sec-title">Breakfast · 8:00 am</div>
+  <div class="menu-grid" id="mg-breakfast"></div>
+  <div class="menu-sec-title">Mid-morning snack · 11:00 am</div>
+  <div class="menu-grid" id="mg-snack"></div>
+  <div class="menu-sec-title">Lunch · 1:00 pm</div>
+  <div class="menu-grid" id="mg-lunch"></div>
+  <div class="menu-sec-title">Evening snack · 4:30 pm</div>
+  <div class="menu-grid" id="mg-evening"></div>
+  <div class="save-row" style="margin-top:1rem;">
+    <button class="add-btn" onclick="openModal('menu-modal')">+ Add / edit meal</button>
+    <button class="save-btn" onclick="doSaveMenu()">Save menu to Sheet</button>
+    <span class="ok-msg" id="menu-ok">Saved!</span>
+  </div>
+</div>
+
+<!-- RESOURCES -->
+<div id="resources" class="sec">
+  <div class="sec-hdr"><h2>Resources & links</h2><p>Websites, apps, YouTube, books — and your own Google Doc links.</p></div>
+  <div id="res-wrap"></div>
+  <button class="add-btn" onclick="openModal('res-modal')">+ Add resource or Google Doc link</button>
+</div>
+
+<!-- TRACKER -->
+<div id="tracker" class="sec">
+  <div class="sec-hdr"><h2>Progress tracker</h2><p>Rate each subject weekly (1–3 stars). Add notes. Save to Sheet.</p></div>
+  <div class="wsel" id="wsel"></div>
+  <div class="g2">
+    <div class="tc"><div class="th th-jk"><span>JK — 10 yrs</span><span id="jk-avg" style="font-size:11px;font-weight:400;opacity:.75">Avg: —</span></div><div class="tb" id="jk-tb"></div></div>
+    <div class="tc"><div class="th th-pk"><span>PK — 6 yrs</span><span id="pk-avg" style="font-size:11px;font-weight:400;opacity:.75">Avg: —</span></div><div class="tb" id="pk-tb"></div></div>
+  </div>
+  <div class="save-row">
+    <button class="save-btn" onclick="doSaveTracker()">Save week to Sheet</button>
+    <span class="ok-msg" id="trk-ok">Saved!</span>
+  </div>
+</div>
+
+</main>
+
+<!-- MENU MODAL -->
+<div class="overlay" id="menu-modal">
+  <div class="modal">
+    <h3>Add / edit meal</h3>
+    <div class="fl"><label>Meal time</label><select class="fi" id="m-time"><option value="breakfast">Breakfast</option><option value="snack">Mid-morning snack</option><option value="lunch">Lunch</option><option value="evening">Evening snack</option></select></div>
+    <div class="fl"><label>Day</label><select class="fi" id="m-day"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option></select></div>
+    <div class="fl"><label>Main item</label><input class="fi" id="m-main" placeholder="e.g. Idli & sambar" /></div>
+    <div class="fl"><label>Side / note</label><input class="fi" id="m-note" placeholder="e.g. With coconut chutney" /></div>
+    <div class="mbtns"><button class="btn-c" onclick="closeModal('menu-modal')">Cancel</button><button class="btn-s" onclick="addMeal()">Save</button></div>
+  </div>
+</div>
+
+<!-- RESOURCE MODAL -->
+<div class="overlay" id="res-modal">
+  <div class="modal">
+    <h3>Add resource or link</h3>
+    <div class="fl"><label>Subject / category</label><input class="fi" id="r-subj" placeholder="e.g. Math, Chess, Creative writing…" /></div>
+    <div class="fl"><label>Name</label><input class="fi" id="r-name" placeholder="e.g. Khan Academy Grade 5" /></div>
+    <div class="fl"><label>URL (website or Google Doc link)</label><input class="fi" id="r-url" placeholder="https://…" /></div>
+    <div class="fl"><label>For</label><select class="fi" id="r-for"><option value="both">Both JK & PK</option><option value="jk">JK only</option><option value="pk">PK only</option></select></div>
+    <div class="fl"><label>Type</label><select class="fi" id="r-type"><option value="link">Website / App</option><option value="gdoc">Google Doc / Sheet / Slides</option><option value="youtube">YouTube channel</option><option value="book">Book</option></select></div>
+    <div class="mbtns"><button class="btn-c" onclick="closeModal('res-modal')">Cancel</button><button class="btn-s" onclick="addResource()">Add</button></div>
+  </div>
+</div>
+
+<script>
+// ─── STATE ──────────────────────────────────────────────────────
+let API = localStorage.getItem('plannerApi') || '';
+let week = 1;
+
+// Internal data — mirrors Sheet row structure exactly
+let ttJK = [], ttPK = [], curriculum = [], menu = [], resources = [], tracker = [];
+
+// Slot type lookup for colour coding
+const SLOT_STYLE = s => {
+  const l = s.toLowerCase();
+  if (l.includes('break') || l.includes('snack') && !l.includes('free')) return 's-brk';
+  if (l.includes('expert') || l.includes('(expert)')) return 's-exp';
+  if (l.includes('free play') || l.includes('warm-up') || l.includes('review')) return 's-both';
+  return '';
+};
+
+const JK_SUBJ = ['Creative writing','Sangeetham / Music','Drawing & art','Math bridge course','General knowledge','Sports & agility','Public speaking','Robotics','Chess'];
+const PK_SUBJ = ['Creative writing','Story circle reading','Drawing & art','Shlokas','Sangeetham / Piano','Math bridge course','General knowledge','Around the world','Sports & agility'];
+
+// Default timetable data
+const DEF_TT_JK = [
+  {time:'8:30 – 9:00',  mon:'Morning warm-up & reading',   tue:'Morning warm-up & reading',   wed:'Morning warm-up & reading',   thu:'Morning warm-up & reading',   fri:'Morning warm-up & reading'},
+  {time:'9:00 – 10:00', mon:'Creative writing',             tue:'Public speaking (Expert)',     wed:'Math bridge course',           thu:'Robotics (Expert)',            fri:'Creative writing'},
+  {time:'10:00 – 11:00',mon:'Sangeetham / Music',           tue:'Drawing & art',               wed:'Sangeetham / Music',           thu:'Chess (Expert)',               fri:'General knowledge'},
+  {time:'11:00 – 11:15',mon:'Break + snack',                tue:'Break + snack',               wed:'Break + snack',                thu:'Break + snack',                fri:'Break + snack'},
+  {time:'11:15 – 12:15',mon:'General knowledge',            tue:'Math bridge course',          wed:'Drawing & art',                thu:'Creative writing',             fri:'Robotics / Chess (Expert)'},
+  {time:'12:15 – 1:00', mon:'Sports & agility',             tue:'Sports & agility',            wed:'Free play / outdoor',          thu:'Sports & agility',             fri:'Weekly review & fun'},
+];
+const DEF_TT_PK = [
+  {time:'8:30 – 9:00',  mon:'Morning warm-up & shlokas',   tue:'Morning warm-up & shlokas',   wed:'Morning warm-up & shlokas',   thu:'Morning warm-up & shlokas',   fri:'Morning warm-up & shlokas'},
+  {time:'9:00 – 10:00', mon:'Story circle reading',         tue:'Creative writing',             wed:'Math bridge course',           thu:'Story circle reading',         fri:'Creative writing'},
+  {time:'10:00 – 11:00',mon:'Sangeetham / Piano',           tue:'Drawing & art',               wed:'Around the world',             thu:'Sangeetham / Piano',           fri:'General knowledge'},
+  {time:'11:00 – 11:15',mon:'Break + snack',                tue:'Break + snack',               wed:'Break + snack',                thu:'Break + snack',                fri:'Break + snack'},
+  {time:'11:15 – 12:00',mon:'Drawing & art',                tue:'Math bridge course',          wed:'Shlokas practice',             thu:'General knowledge',            fri:'Around the world'},
+  {time:'12:00 – 12:45',mon:'Sports & agility',             tue:'Sports & agility',            wed:'Free play / outdoor',          thu:'Sports & agility',             fri:'Weekly review & fun'},
+];
+const DEF_CURR = [
+  {Kid:'jk',Subject:'Creative writing',Weeks1_2:'Descriptive writing — setting scenes, sensory details, vivid adjectives. Short paragraphs daily.',Weeks3_4:'Adventure & fiction — plot structure, creating characters, conflict & resolution.',Weeks5_6:'Opinion & persuasive writing. Compile a mini writing portfolio.'},
+  {Kid:'pk',Subject:'Creative writing',Weeks1_2:'Sentence building — who, what, where. Draw & write 2–3 sentences. Sight words reinforcement.',Weeks3_4:'Simple stories with guided prompts. Introduce adjectives & describing words.',Weeks5_6:'My own storybook — write & illustrate a 4–6 page mini book.'},
+  {Kid:'pk',Subject:'Story circle reading',Weeks1_2:'Enid Blyton — The Wishing Chair. Chapters 1–6. Read aloud, discuss characters & setting.',Weeks3_4:'Chapters 7–14. Plot mapping — retell story. What happens next?',Weeks5_6:'Finish the book. Draw favourite character. Write 5 things you loved.'},
+  {Kid:'jk',Subject:'Math bridge course',Weeks1_2:'Fractions & decimals — adding, subtracting, comparing. Real-life application.',Weeks3_4:'Geometry — shapes, area, perimeter. Introduction to ratio & proportion.',Weeks5_6:'Word problems, logical puzzles, data handling & bar graphs. Timed practice.'},
+  {Kid:'pk',Subject:'Math bridge course',Weeks1_2:'Number sense to 100 — skip counting by 2s, 5s, 10s. Simple addition.',Weeks3_4:'Addition & subtraction within 50. Place value. Shapes & patterns.',Weeks5_6:'Measurement, telling time, simple word problems. Math games & puzzles.'},
+  {Kid:'both',Subject:'Sangeetham / Piano',Weeks1_2:'Swaras (Sa Re Ga Ma) — recognition and singing. Piano: identify keys, C major scale.',Weeks3_4:'Simple ragas & compositions. Piano: nursery tunes for PK; melody + chords for JK.',Weeks5_6:'Perform 2 pieces each — one classical, one of their choice. Record & play back.'},
+  {Kid:'both',Subject:'Drawing & art',Weeks1_2:'Basic shapes & proportion. PK: cartoon animals. JK: still life with pencil shading.',Weeks3_4:'Watercolour basics — wet-on-wet, colour mixing. PK: nature. JK: landscape.',Weeks5_6:'Abstract art — texture experiments. Final framed piece each to keep.'},
+  {Kid:'both',Subject:'General knowledge',Weeks1_2:'India — states, capitals, rivers, monuments. Fun quiz format. PK: map colouring.',Weeks3_4:'World — continents, countries, famous landmarks. JK adds current events.',Weeks5_6:'Science & nature — space, animals, human body. Weekly JK vs PK GK challenge!'},
+  {Kid:'pk',Subject:'Around the world',Weeks1_2:'Asia — India, Japan, China. Food, festivals, animals. Fact card per country.',Weeks3_4:'Europe & Africa — Eiffel Tower, Sahara, elephants. Draw a postcard.',Weeks5_6:'Americas & Australia — build a mini Around the World scrapbook.'},
+  {Kid:'jk',Subject:'Public speaking',Weeks1_2:'Voice, posture, eye contact. 1-min self-introduction. Opinion sharing on everyday topics.',Weeks3_4:'Debates & group discussion. JAM (Just A Minute). Extempore on random topics.',Weeks5_6:'Ad pitch — present a product idea. Make a 60-sec Reel. Final showcase speech.'},
+  {Kid:'jk',Subject:'Robotics & coding',Weeks1_2:'Introduction to Scratch — build simple animations & interactive stories.',Weeks3_4:'Basic robotics — sensors & actuators. Build & program a simple robot.',Weeks5_6:'Introduction to AI prompting. Build a simple AI-powered quiz or game.'},
+  {Kid:'jk',Subject:'Chess',Weeks1_2:'Piece names, movement rules, board setup. Practice games — no pressure.',Weeks3_4:'Basic tactics — pins, forks, skewers. Opening principles.',Weeks5_6:'Endgame basics. Timed matches. Analyse own games.'},
+];
+const DEF_MENU = [
+  {MealTime:'breakfast',Day:'Monday',MainItem:'Idli & sambar',SideNote:'With coconut chutney'},
+  {MealTime:'breakfast',Day:'Tuesday',MainItem:'Dosa & chutney',SideNote:'Tomato or coconut chutney'},
+  {MealTime:'breakfast',Day:'Wednesday',MainItem:'Upma',SideNote:'With peanuts & cashews'},
+  {MealTime:'breakfast',Day:'Thursday',MainItem:'Poha',SideNote:'With lemon & coriander'},
+  {MealTime:'breakfast',Day:'Friday',MainItem:'Parathas',SideNote:'With curd & pickle'},
+  {MealTime:'snack',Day:'Monday',MainItem:'Fruits & nuts',SideNote:'Seasonal fruit + almonds'},
+  {MealTime:'snack',Day:'Tuesday',MainItem:'Banana milkshake',SideNote:'No sugar added'},
+  {MealTime:'snack',Day:'Wednesday',MainItem:'Makhana',SideNote:'Lightly roasted foxnuts'},
+  {MealTime:'snack',Day:'Thursday',MainItem:'Sprouts chaat',SideNote:'With lemon & chaat masala'},
+  {MealTime:'snack',Day:'Friday',MainItem:'Smoothie',SideNote:'Mango or banana based'},
+  {MealTime:'lunch',Day:'Monday',MainItem:'Rice, dal, sabzi',SideNote:'Jeera rice + yellow dal + aloo gobi'},
+  {MealTime:'lunch',Day:'Tuesday',MainItem:'Chapati, paneer, dal',SideNote:'Palak paneer or paneer bhurji'},
+  {MealTime:'lunch',Day:'Wednesday',MainItem:'Curd rice',SideNote:'With pickle & papad'},
+  {MealTime:'lunch',Day:'Thursday',MainItem:'Pulao & raita',SideNote:'Vegetable pulao + cucumber raita'},
+  {MealTime:'lunch',Day:'Friday',MainItem:'Special choice day',SideNote:'Kids pick the menu!'},
+  {MealTime:'evening',Day:'Monday',MainItem:'Chikki & milk',SideNote:'Peanut or sesame chikki'},
+  {MealTime:'evening',Day:'Tuesday',MainItem:'Roasted chana',SideNote:'With jaggery'},
+  {MealTime:'evening',Day:'Wednesday',MainItem:'Fruit chaat',SideNote:'Mixed seasonal fruits'},
+  {MealTime:'evening',Day:'Thursday',MainItem:'Multigrain biscuits',SideNote:'With milk'},
+  {MealTime:'evening',Day:'Friday',MainItem:'Homemade lemonade',SideNote:'With a light snack'},
+];
+const DEF_RES = [
+  {Subject:'Creative writing',Name:'YoungWriters.co.uk',URL:'https://youngwriters.co.uk',For:'both',Type:'link'},
+  {Subject:'Creative writing',Name:'Story Starters (Scholastic)',URL:'https://www.scholastic.com/teachers/story-starters/',For:'both',Type:'link'},
+  {Subject:'Math (PK)',Name:'Khan Academy Kids',URL:'https://www.khanacademy.org/kids',For:'pk',Type:'link'},
+  {Subject:'Math (PK)',Name:'K5 Learning worksheets',URL:'https://www.k5learning.com',For:'pk',Type:'link'},
+  {Subject:'Math (JK)',Name:'Khan Academy Grade 5/6',URL:'https://www.khanacademy.org',For:'jk',Type:'link'},
+  {Subject:'Math (JK)',Name:'Brilliant.org puzzles',URL:'https://brilliant.org',For:'jk',Type:'link'},
+  {Subject:'Music / Sangeetham',Name:'Hoffman Academy Piano',URL:'https://www.hoffmanacademy.com',For:'both',Type:'youtube'},
+  {Subject:'Drawing & art',Name:'Art for Kids Hub',URL:'https://www.youtube.com/@ArtforKidsHub',For:'both',Type:'youtube'},
+  {Subject:'Drawing & art',Name:'Circle Line Art School (JK)',URL:'https://www.youtube.com/@circlelineartschool',For:'jk',Type:'youtube'},
+  {Subject:'General knowledge',Name:'National Geographic Kids',URL:'https://www.natgeokids.com',For:'both',Type:'link'},
+  {Subject:'Around the world',Name:'Geography Now',URL:'https://www.youtube.com/@GeographyNow',For:'pk',Type:'youtube'},
+  {Subject:'Robotics & coding',Name:'Scratch',URL:'https://scratch.mit.edu',For:'jk',Type:'link'},
+  {Subject:'Robotics & coding',Name:'CS First by Google',URL:'https://csfirst.withgoogle.com',For:'jk',Type:'link'},
+  {Subject:'Chess',Name:'Lichess.org',URL:'https://lichess.org',For:'jk',Type:'link'},
+  {Subject:'Chess',Name:'GothamChess beginners',URL:'https://www.youtube.com/@GothamChess',For:'jk',Type:'youtube'},
+  {Subject:'Shlokas',Name:'Stotra Nidhi',URL:'https://stotranidhi.com',For:'pk',Type:'link'},
+];
+
+// Tracker: flat array of {Week,Kid,Subject,Rating,Notes}
+function blankTracker() {
+  const rows = [];
+  for(let w=1;w<=6;w++){
+    JK_SUBJ.forEach(s=>rows.push({Week:String(w),Kid:'jk',Subject:s,Rating:'0',Notes:''}));
+    PK_SUBJ.forEach(s=>rows.push({Week:String(w),Kid:'pk',Subject:s,Rating:'0',Notes:''}));
+  }
+  return rows;
+}
+
+// ─── INIT ────────────────────────────────────────────────────────
+window.onload = () => {
+  // Load defaults
+  ttJK=[...DEF_TT_JK]; ttPK=[...DEF_TT_PK];
+  curriculum=[...DEF_CURR]; menu=[...DEF_MENU];
+  resources=[...DEF_RES]; tracker=blankTracker();
+
+  if(API){ document.getElementById('url-in').value=API; setSyncStatus('Connected ✓','ok'); loadFromSheet(); }
+  renderAll();
+};
+
+function renderAll(){
+  renderTT('tt-jk',ttJK,'jk'); renderTT('tt-pk',ttPK,'pk');
+  renderCurriculum(); renderMenu(); renderResources();
+  renderWeekSel(); renderTracker();
+}
+
+// ─── SHEET API ───────────────────────────────────────────────────
+function setSyncStatus(msg,cls){ const el=document.getElementById('sync-st'); el.textContent=msg; el.className=cls||''; }
+
+async function callSheet(action, payload={}){
+  if(!API) return null;
+  try{
+    const res = await fetch(API,{method:'POST',body:JSON.stringify({action,...payload})});
+    return await res.json();
+  }catch(e){ setSyncStatus('Sheet error — check URL','err'); return null; }
+}
+
+async function loadFromSheet(){
+  setSyncStatus('Loading…','');
+  const d = await callSheet('load');
+  if(!d||!d.ok){ setSyncStatus('Could not load — using defaults','err'); return; }
+  if(d.timetableJK && d.timetableJK.length) ttJK=d.timetableJK;
+  if(d.timetablePK && d.timetablePK.length) ttPK=d.timetablePK;
+  if(d.curriculum  && d.curriculum.length)  curriculum=d.curriculum;
+  if(d.menu        && d.menu.length)        menu=d.menu;
+  if(d.resources   && d.resources.length)   resources=d.resources;
+  if(d.tracker     && d.tracker.length)     tracker=d.tracker;
+  setSyncStatus('Synced with Google Sheet ✓','ok');
+  renderAll();
+}
+
+async function push(action,payload){
+  setSyncStatus('Saving…','');
+  const r = await callSheet(action,payload);
+  setSyncStatus(r&&r.ok?'Synced ✓':'Saved locally (sheet not connected)','ok');
+}
+
+// ─── SETUP ───────────────────────────────────────────────────────
+function toggleSetup(){ document.getElementById('setup-banner').classList.toggle('open'); }
+function saveUrl(){
+  const v=document.getElementById('url-in').value.trim();
+  if(!v)return;
+  API=v; localStorage.setItem('plannerApi',v);
+  document.getElementById('url-ok').textContent='URL saved — loading data…';
+  setSyncStatus('Connecting…','');
+  loadFromSheet();
+}
+
+// ─── TIMETABLE ───────────────────────────────────────────────────
+const DAYS_KEY=['mon','tue','wed','thu','fri'];
+const DAYS_LBL=['Monday','Tuesday','Wednesday','Thursday','Friday'];
+
+function renderTT(id,data,kid){
+  const tb=document.getElementById(id); tb.innerHTML='';
+  data.forEach((row,ri)=>{
+    const tr=document.createElement('tr');
+    let html=`<td class="tcol">${row.time}</td>`;
+    DAYS_KEY.forEach((dk,di)=>{
+      const val=row[dk]||'';
+      const sc=SLOT_STYLE(val)||(kid==='jk'?'s-jk':'s-pk');
+      html+=`<td><span class="slot ${sc}" contenteditable="true"
+        onblur="updateTT('${kid}',${ri},'${dk}',this.textContent.trim())">${val}</span></td>`;
+    });
+    tr.innerHTML=html; tb.appendChild(tr);
+  });
+}
+
+function updateTT(kid,ri,dk,val){
+  if(kid==='jk') ttJK[ri][dk]=val; else ttPK[ri][dk]=val;
+  push('saveTimetable',{jk:ttJK,pk:ttPK});
+}
+
+// ─── CURRICULUM ──────────────────────────────────────────────────
+function renderCurriculum(){
+  const g=document.getElementById('curr-grid'); g.innerHTML='';
+  curriculum.forEach((item,idx)=>{
+    const k=item.Kid||item.kid||'jk';
+    const hcls=k==='jk'?'ch-jk':k==='pk'?'ch-pk':'ch-both';
+    const tagHtml=k==='both'
+      ?'<span class="ctag ctag-jk">JK</span><span style="margin:0 3px"></span><span class="ctag ctag-pk">PK</span>'
+      :`<span class="ctag ctag-${k}">${k.toUpperCase()}</span>`;
+    const subj=item.Subject||item.title||'';
+    const w12=item.Weeks1_2||item.w12||''; const w34=item.Weeks3_4||item.w34||''; const w56=item.Weeks5_6||item.w56||'';
+    g.innerHTML+=`<div class="card">
+      <div class="ch ${hcls}">${tagHtml}<span class="ct" contenteditable="true" onblur="updateCurr(${idx},'Subject',this.textContent)">${subj}</span></div>
+      <div class="cb">
+        <div class="wlbl">Weeks 1–2</div><div class="wval" contenteditable="true" onblur="updateCurr(${idx},'Weeks1_2',this.textContent)">${w12}</div>
+        <div class="cdiv"></div>
+        <div class="wlbl">Weeks 3–4</div><div class="wval" contenteditable="true" onblur="updateCurr(${idx},'Weeks3_4',this.textContent)">${w34}</div>
+        <div class="cdiv"></div>
+        <div class="wlbl">Weeks 5–6</div><div class="wval" contenteditable="true" onblur="updateCurr(${idx},'Weeks5_6',this.textContent)">${w56}</div>
+      </div>
+    </div>`;
+  });
+}
+
+function updateCurr(idx,field,val){
+  curriculum[idx][field]=val;
+  push('saveCurriculum',{curriculum});
+}
+
+// ─── MENU ────────────────────────────────────────────────────────
+function renderMenu(){
+  ['breakfast','snack','lunch','evening'].forEach(mt=>{
+    const el=document.getElementById('mg-'+mt); if(!el) return;
+    el.innerHTML='';
+    menu.filter(m=>(m.MealTime||'')===mt).forEach((m,i)=>{
+      const globalIdx=menu.indexOf(m);
+      el.innerHTML+=`<div class="menu-card">
+        <div class="mday">${m.Day||''}</div>
+        <div class="mmain" contenteditable="true" onblur="updateMeal(${globalIdx},'MainItem',this.textContent)">${m.MainItem||''}</div>
+        <div class="mnote" contenteditable="true" onblur="updateMeal(${globalIdx},'SideNote',this.textContent)">${m.SideNote||''}</div>
+      </div>`;
+    });
+  });
+}
+
+function updateMeal(idx,field,val){ menu[idx][field]=val; }
+function doSaveMenu(){ push('saveMenu',{menu}); flash('menu-ok'); }
+function addMeal(){
+  const mt=document.getElementById('m-time').value;
+  const day=document.getElementById('m-day').value;
+  const main=document.getElementById('m-main').value.trim();
+  const note=document.getElementById('m-note').value.trim();
+  if(!main) return;
+  const ex=menu.findIndex(m=>m.MealTime===mt&&m.Day===day);
+  if(ex>=0) menu[ex]={MealTime:mt,Day:day,MainItem:main,SideNote:note};
+  else menu.push({MealTime:mt,Day:day,MainItem:main,SideNote:note});
+  renderMenu(); closeModal('menu-modal');
+  push('saveMenu',{menu});
+}
+
+// ─── RESOURCES ───────────────────────────────────────────────────
+function renderResources(){
+  const wrap=document.getElementById('res-wrap'); wrap.innerHTML='';
+  const grouped={};
+  resources.forEach((r,i)=>{ const s=r.Subject||r.subj||'Other'; if(!grouped[s]) grouped[s]=[]; grouped[s].push({...r,_i:i}); });
+  Object.keys(grouped).forEach(subj=>{
+    let html=`<div class="res-sec"><div class="res-sec-title">${subj}</div><div class="res-grid">`;
+    grouped[subj].forEach(r=>{
+      const f=r.For||r.for||'both';
+      const fcls=f==='jk'?'rf-jk':f==='pk'?'rf-pk':'rf-both';
+      const flbl=f==='jk'?'JK':f==='pk'?'PK':'Both';
+      const t=r.Type||r.type||'link';
+      const url=r.URL||r.url||'';
+      const name=r.Name||r.name||'';
+      let linkHtml='';
+      if(url){
+        if(t==='gdoc') linkHtml=`<a href="${url}" target="_blank" class="gdoc-chip">📄 Open Google Doc / Sheet</a>`;
+        else if(t==='youtube') linkHtml=`<a href="${url}" target="_blank" class="yt-chip">▶ Watch on YouTube</a>`;
+        else linkHtml=`<a href="${url}" target="_blank" class="rlink">↗ ${url.replace('https://','').split('/')[0]}</a>`;
+      }
+      html+=`<div class="res-card">
+        <span class="rfor ${fcls}">${flbl}</span>
+        <div class="rname">${name}</div>
+        ${linkHtml}
+        <div><button class="ra-btn" onclick="deleteRes(${r._i})">Remove</button></div>
+      </div>`;
+    });
+    html+='</div></div>';
+    wrap.innerHTML+=html;
+  });
+}
+
+function deleteRes(i){ resources.splice(i,1); renderResources(); push('saveResources',{resources}); }
+function addResource(){
+  const subj=document.getElementById('r-subj').value.trim();
+  const name=document.getElementById('r-name').value.trim();
+  if(!subj||!name) return;
+  resources.push({Subject:subj,Name:name,URL:document.getElementById('r-url').value.trim(),For:document.getElementById('r-for').value,Type:document.getElementById('r-type').value});
+  renderResources(); closeModal('res-modal');
+  ['r-subj','r-name','r-url'].forEach(id=>document.getElementById(id).value='');
+  push('saveResources',{resources});
+}
+
+// ─── TRACKER ─────────────────────────────────────────────────────
+function renderWeekSel(){
+  const el=document.getElementById('wsel'); el.innerHTML='';
+  for(let w=1;w<=6;w++) el.innerHTML+=`<button class="wb${w===week?' active':''}" onclick="setWeek(${w},this)">Week ${w}</button>`;
+}
+function setWeek(w,btn){ week=w; document.querySelectorAll('.wb').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); renderTracker(); }
+
+function renderTracker(){
+  renderTrackerSide('jk-tb','jk',JK_SUBJ,'jk-avg');
+  renderTrackerSide('pk-tb','pk',PK_SUBJ,'pk-avg');
+}
+
+function renderTrackerSide(bodyId,kid,subjects,avgId){
+  const el=document.getElementById(bodyId); el.innerHTML='';
+  let sum=0,cnt=0;
+  subjects.forEach((s,si)=>{
+    const row=tracker.find(t=>t.Week===String(week)&&t.Kid===kid&&t.Subject===s)||{Rating:'0',Notes:''};
+    const v=parseInt(row.Rating)||0;
+    if(v>0){sum+=v;cnt++;}
+    const pct=Math.round((v/3)*100);
+    const stars=[1,2,3].map(n=>`<div class="star${v>=n?' f'+v:''}" onclick="rateStar('${kid}','${s}',${n})">${n}</div>`).join('');
+    el.innerHTML+=`<div class="trow">
+      <div><div class="tname">${s}</div></div>
+      <div class="tr-r">
+        <div class="pb-w"><div class="pb pb-${kid}" style="width:${pct}%"></div></div>
+        <div class="stars">${stars}</div>
+      </div>
+    </div>
+    <textarea class="tnote" rows="1" placeholder="Notes for this week…"
+      onblur="updateNote('${kid}','${s}',this.value)">${row.Notes||''}</textarea>`;
+  });
+  document.getElementById(avgId).textContent='Avg: '+(cnt?(sum/cnt).toFixed(1):'—');
+}
+
+function rateStar(kid,subj,val){
+  const idx=tracker.findIndex(t=>t.Week===String(week)&&t.Kid===kid&&t.Subject===subj);
+  const cur=idx>=0?parseInt(tracker[idx].Rating)||0:0;
+  const newVal=cur===val?0:val;
+  if(idx>=0) tracker[idx].Rating=String(newVal);
+  else tracker.push({Week:String(week),Kid:kid,Subject:subj,Rating:String(newVal),Notes:''});
+  renderTracker();
+}
+
+function updateNote(kid,subj,val){
+  const idx=tracker.findIndex(t=>t.Week===String(week)&&t.Kid===kid&&t.Subject===subj);
+  if(idx>=0) tracker[idx].Notes=val;
+  else tracker.push({Week:String(week),Kid:kid,Subject:subj,Rating:'0',Notes:val});
+}
+
+function doSaveTracker(){ push('saveTracker',{tracker:tracker.filter(t=>parseInt(t.Rating)>0||t.Notes)}); flash('trk-ok'); }
+
+// ─── MODAL / NAV / UTILS ─────────────────────────────────────────
+function openModal(id){ document.getElementById(id).classList.add('open'); }
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+function showSec(id,tab){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active'); tab.classList.add('active');
+}
+function flash(id){ const el=document.getElementById(id); el.style.display='inline'; setTimeout(()=>el.style.display='none',2500); }
+</script>
+</body>
+</html>
