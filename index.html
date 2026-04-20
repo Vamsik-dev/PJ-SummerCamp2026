@@ -188,6 +188,71 @@ main{max-width:960px;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
 .mbtns{display:flex;justify-content:flex-end;gap:7px;margin-top:.9rem;}
 .btn-c{padding:6px 14px;background:none;border:1px solid var(--bd);border-radius:7px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;}
 .btn-s{padding:6px 14px;background:var(--ink);color:#fff;border:none;border-radius:7px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;}
+
+/* ── CHALLENGE TABS ───────────────────────────────────── */
+.tab-badge{font-size:10px;padding:1px 6px;border-radius:10px;vertical-align:middle;margin-left:4px;font-weight:600;}
+.jk-badge{background:#E1F5EE;color:#085041;}
+.pk-badge{background:#FAECE7;color:#712B13;}
+.jk-accent{color:#1D9E75;}
+.pk-accent{color:#D85A30;}
+.jk-fill{background:#1D9E75;}
+.pk-fill{background:#D85A30;}
+.ch-name-row{margin:1rem 0;}
+.badge-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:7px;}
+.name-badge{font-size:12px;padding:4px 12px;border-radius:20px;border:1px solid var(--bd);color:var(--ink-m);cursor:pointer;background:transparent;font-family:'DM Sans',sans-serif;}
+.name-badge.active-jk{background:#1D9E75;color:#E1F5EE;border-color:#0F6E56;}
+.name-badge.active-pk{background:#D85A30;color:#FAECE7;border-color:#993C1D;}
+.chosen-name{font-size:17px;font-weight:500;margin-top:9px;}
+.prog-wrap{margin:1rem 0;}
+.prog-meta{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-m);margin-bottom:5px;}
+.prog-bar{height:6px;background:var(--bd);border-radius:3px;overflow:hidden;}
+.prog-fill{height:100%;border-radius:3px;transition:width .3s;}
+.week-tabs{display:flex;gap:6px;margin:1rem 0;flex-wrap:wrap;}
+.wtab{font-size:12px;padding:5px 13px;border-radius:18px;border:1px solid var(--bd);color:var(--ink-m);cursor:pointer;background:transparent;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.wtab.active-jk{background:#1D9E75;color:#fff;border-color:#0F6E56;}
+.wtab.active-pk{background:#D85A30;color:#fff;border-color:#993C1D;}
+.week-theme-bar{padding:9px 13px;border-radius:8px;border:1px solid var(--bd);font-size:12.5px;margin-bottom:1rem;background:var(--warm);}
+.days-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:9px;}
+.day-card{background:#fff;border:1px solid var(--bd);border-radius:11px;padding:11px;cursor:pointer;transition:border-color .15s;position:relative;}
+.day-card:hover{border-color:var(--ink-m);}
+.day-card.done-jk{border-left:3px solid #1D9E75;}
+.day-card.done-pk{border-left:3px solid #D85A30;}
+.day-num{font-size:10px;color:var(--ink-m);margin-bottom:2px;}
+.day-name{font-size:12.5px;font-weight:500;color:var(--ink);margin-bottom:4px;}
+.day-desc{font-size:11px;color:var(--ink-m);line-height:1.5;}
+.day-tag{display:inline-block;font-size:10px;padding:2px 7px;border-radius:9px;margin-top:6px;}
+.done-check{position:absolute;top:9px;right:9px;font-size:14px;}
+.tag-mind{background:#EEEDFE;color:#3C3489;}.tag-voice{background:#E1F5EE;color:#085041;}
+.tag-memory{background:#FAEEDA;color:#633806;}.tag-improv{background:#FAECE7;color:#712B13;}
+.tag-social{background:#FBEAF0;color:#72243E;}.tag-joy{background:#EAF3DE;color:#27500A;}
+.tag-move{background:#FAECE7;color:#712B13;}.tag-story{background:#EEEDFE;color:#3C3489;}
+.tag-nature{background:#EAF3DE;color:#27500A;}.tag-create{background:#FAEEDA;color:#633806;}
+.tag-feel{background:#FBEAF0;color:#72243E;}.tag-listen{background:#E6F1FB;color:#0C447C;}
+.mood-row,.sticker-row{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap;}
+.mood-btn,.sticker-btn{font-size:15px;padding:2px 5px;border-radius:6px;border:1px solid var(--bd);cursor:pointer;background:transparent;transition:all .12s;}
+.mood-btn.sel,.sticker-btn.sel{background:#f3f4f6;border-color:var(--ink-m);transform:scale(1.18);}
+.score-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:1.5rem;}
+.score-card{background:var(--warm);border:1px solid var(--bd);border-radius:9px;padding:11px;text-align:center;}
+.score-label{font-size:11px;color:var(--ink-m);margin-bottom:6px;}
+.score-stars{display:flex;justify-content:center;gap:4px;}
+.s-star{font-size:20px;cursor:pointer;opacity:.2;transition:opacity .1s;user-select:none;}
+.s-star.lit{opacity:1;}
+.q-list{display:flex;flex-direction:column;gap:6px;}
+.q-item{font-size:13px;color:var(--ink-l);padding:8px 12px;border-radius:8px;border:1px solid var(--bd);cursor:pointer;transition:all .12s;line-height:1.5;}
+.q-item:hover{background:var(--warm);}
+.q-item.picked-jk{background:#E1F5EE;border-color:#5DCAA5;color:#085041;}
+.q-item.picked-pk{background:#FAECE7;border-color:#D85A30;color:#712B13;}
+.rhythm-table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:.5rem;}
+.rhythm-table td{padding:7px 11px;border-bottom:1px solid var(--bd);vertical-align:top;}
+.r-day{font-weight:500;min-width:90px;white-space:nowrap;color:var(--ink);}
+.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+@media(max-width:500px){.rules-grid{grid-template-columns:1fr;}}
+.rule-dont{background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:11px 13px;font-size:12px;color:#b91c1c;line-height:1.9;}
+.rule-do{background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:11px 13px;font-size:12px;color:#15803d;line-height:1.9;}
+.rule-title{font-weight:500;margin-bottom:5px;font-size:13px;}
+.section-h3{font-size:14px;font-weight:500;margin:1.4rem 0 .5rem;color:var(--ink);}
+.tip-box{background:var(--warm);border-radius:8px;padding:11px 13px;font-size:12px;color:var(--ink-m);line-height:1.7;margin-top:.5rem;border:1px solid var(--bd);}
+.ch-field-label{font-size:11px;font-weight:500;color:var(--ink-m);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;}
 </style>
 </head>
 <body>
@@ -239,6 +304,8 @@ main{max-width:960px;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
     <div class="tab" onclick="showSec('menu',this)">Daily menu</div>
     <div class="tab" onclick="showSec('resources',this)">Resources & links</div>
     <div class="tab" onclick="showSec('tracker',this)">Progress tracker</div>
+    <div class="tab" onclick="showSec('challenge',this)">Champion Challenge <span class="tab-badge jk-badge">JK</span></div>
+    <div class="tab" onclick="showSec('wildexplorer',this)">Wild Explorer <span class="tab-badge pk-badge">PK</span></div>
   </div>
 </nav>
 
@@ -307,6 +374,84 @@ main{max-width:960px;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
     <button class="save-btn" onclick="doSaveTracker()">Save week to Sheet</button>
     <span class="ok-msg" id="trk-ok">Saved!</span>
   </div>
+</div>
+
+<!-- CHAMPION CHALLENGE — JK -->
+<div id="challenge" class="sec">
+  <div class="sec-hdr"><h2>Champion Challenge <span class="jk-accent">· JK · 10 yrs</span></h2><p>30 days · 10–20 mins/day · confidence, voice, mindset</p></div>
+  <div class="ch-name-row">
+    <div class="ch-field-label">Camp name</div>
+    <div class="badge-row" id="jk-name-badges">
+      <button class="name-badge active-jk" onclick="jkSelName(this,'Champion Challenge')">Champion Challenge</button>
+      <button class="name-badge" onclick="jkSelName(this,'Mind Power Camp')">Mind Power Camp</button>
+      <button class="name-badge" onclick="jkSelName(this,'Explorer Mission')">Explorer Mission</button>
+      <button class="name-badge" onclick="jkSelName(this,'Confidence Camp')">Confidence Camp</button>
+    </div>
+    <div id="jk-chosen-name" class="chosen-name jk-accent">Champion Challenge</div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-meta"><span id="jk-prog-label">0 of 30 days done</span><span id="jk-prog-pct">0%</span></div>
+    <div class="prog-bar"><div id="jk-prog-fill" class="prog-fill jk-fill" style="width:0%"></div></div>
+  </div>
+  <div class="week-tabs" id="jk-week-tabs"></div>
+  <div id="jk-week-theme" class="week-theme-bar"></div>
+  <div id="jk-days-grid" class="days-grid"></div>
+  <h3 class="section-h3">Weekly scoreboard</h3>
+  <div id="jk-score-grid" class="score-grid"></div>
+  <h3 class="section-h3">Tonight's closing question</h3>
+  <div id="jk-q-list" class="q-list"></div>
+  <h3 class="section-h3">Weekly rhythm</h3>
+  <table class="rhythm-table">
+    <tr><td class="r-day">Mon / Wed / Fri</td><td>Main challenge activity (10–15 min) + reflection</td></tr>
+    <tr><td class="r-day">Tue / Thu</td><td>Practice round — shorter version of previous day's activity</td></tr>
+    <tr><td class="r-day">Saturday</td><td>Showcase day — share what you learned this week</td></tr>
+    <tr><td class="r-day">Sunday</td><td>Rest + bedtime question only</td></tr>
+  </table>
+  <h3 class="section-h3">Parent language guide</h3>
+  <div class="rules-grid">
+    <div class="rule-dont"><div class="rule-title">Avoid saying</div>That was wrong.<br>You didn't try hard enough.<br>Why can't you just do it?<br>Let me show you the right way.</div>
+    <div class="rule-do"><div class="rule-title">Instead say</div>What did you notice?<br>That took courage to try.<br>What would you do differently?<br>I love watching you figure things out.</div>
+  </div>
+  <div class="tip-box" style="margin-top:1rem;">⭐ Tip: Mark each day done right after the activity — even a partial attempt counts. Progress over perfection!</div>
+</div>
+
+<!-- WILD EXPLORER ADVENTURE — PK -->
+<div id="wildexplorer" class="sec">
+  <div class="sec-hdr"><h2>Wild Explorer Adventure <span class="pk-accent">· PK · 6 yrs</span></h2><p>30 days · 5–10 mins/day · movement, creativity, feelings</p></div>
+  <div class="ch-name-row">
+    <div class="ch-field-label">Camp name</div>
+    <div class="badge-row" id="pk-name-badges">
+      <button class="name-badge active-pk" onclick="pkSelName(this,'Wild Explorer')">Wild Explorer</button>
+      <button class="name-badge" onclick="pkSelName(this,'Story Safari')">Story Safari</button>
+      <button class="name-badge" onclick="pkSelName(this,'Cricket Champion')">Cricket Champion</button>
+      <button class="name-badge" onclick="pkSelName(this,'Adventure Academy')">Adventure Academy</button>
+    </div>
+    <div id="pk-chosen-name" class="chosen-name pk-accent">Wild Explorer</div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-meta"><span id="pk-prog-label">0 of 30 days done</span><span id="pk-prog-pct">0%</span></div>
+    <div class="prog-bar"><div id="pk-prog-fill" class="prog-fill pk-fill" style="width:0%"></div></div>
+  </div>
+  <div class="week-tabs" id="pk-week-tabs"></div>
+  <div id="pk-week-theme" class="week-theme-bar"></div>
+  <div id="pk-days-grid" class="days-grid"></div>
+  <h3 class="section-h3">Weekly scoreboard</h3>
+  <div id="pk-score-grid" class="score-grid"></div>
+  <h3 class="section-h3">Tonight's bedtime question</h3>
+  <div id="pk-q-list" class="q-list"></div>
+  <h3 class="section-h3">Weekly rhythm</h3>
+  <table class="rhythm-table">
+    <tr><td class="r-day">Mon / Wed / Fri</td><td>Main adventure activity (5–10 min) — active & playful</td></tr>
+    <tr><td class="r-day">Tue / Thu</td><td>Mini version — do it again with a twist!</td></tr>
+    <tr><td class="r-day">Saturday</td><td>Show-and-tell — share your favourite moment this week</td></tr>
+    <tr><td class="r-day">Sunday</td><td>Free day — bedtime question only</td></tr>
+  </table>
+  <h3 class="section-h3">Parent language guide</h3>
+  <div class="rules-grid">
+    <div class="rule-dont"><div class="rule-title">Avoid saying</div>That's not how you do it.<br>Stop being silly.<br>You're not listening.<br>That's too easy for you.</div>
+    <div class="rule-do"><div class="rule-title">Instead say</div>Wow, look at you go!<br>I love your ideas.<br>Your body is so strong.<br>Tell me more about that!</div>
+  </div>
+  <div class="tip-box" style="margin-top:1rem;">🌟 Tip: Pick a sticker for every day PK completes — even if it was quick. Celebrate every single one!</div>
 </div>
 
 </main>
@@ -715,12 +860,399 @@ function doSaveTracker(){ push('saveTracker',{tracker:tracker.filter(t=>parseInt
 // ─── MODAL / NAV / UTILS ─────────────────────────────────────────
 function openModal(id){ document.getElementById(id).classList.add('open'); }
 function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+let jkLoaded=false, pkLoaded=false;
 function showSec(id,tab){
   document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.getElementById(id).classList.add('active'); tab.classList.add('active');
+  if(id==='challenge'&&!jkLoaded){jkLoaded=true;jkLoad();}
+  if(id==='wildexplorer'&&!pkLoaded){pkLoaded=true;pkLoad();}
 }
 function flash(id){ const el=document.getElementById(id); el.style.display='inline'; setTimeout(()=>el.style.display='none',2500); }
+
+// ════════════════════════════════════════════════════════════
+//  CHAMPION CHALLENGE — JK
+// ════════════════════════════════════════════════════════════
+const JK_WEEKS=[
+  {label:'Week 1',theme:'Voice & Confidence',color:'#E1F5EE',border:'#5DCAA5',text:'#085041',desc:'Speak up, stand tall — your voice matters!'},
+  {label:'Week 2',theme:'Mind & Memory',color:'#EEEDFE',border:'#AFA9EC',text:'#3C3489',desc:'Train your brain — memory is a superpower.'},
+  {label:'Week 3',theme:'Social & Improv',color:'#FAEEDA',border:'#EF9F27',text:'#633806',desc:'Connect, laugh, and think on your feet.'},
+  {label:'Week 4',theme:'Joy & Celebration',color:'#EAF3DE',border:'#97C459',text:'#27500A',desc:'Celebrate everything you have become!'},
+];
+const JK_DAYS=[
+  {name:'Mirror Talk',desc:'Stand in front of a mirror. Say 3 things you like about yourself out loud.',tag:'voice'},
+  {name:'Power Pose',desc:'Strike your best superhero pose for 2 minutes. Feel the energy!',tag:'mind'},
+  {name:'Story in 60 Seconds',desc:'Tell a made-up story in exactly 60 seconds. No stopping!',tag:'voice'},
+  {name:'Memory Palace',desc:'Pick 5 objects in a room. Close your eyes. Name them all.',tag:'memory'},
+  {name:'Compliment Chain',desc:'Give one genuine compliment to everyone in your family today.',tag:'social'},
+  {name:'The Brave Moment',desc:'Do one thing today that feels a little scary. Write it down.',tag:'mind'},
+  {name:'Tongue Twister Champion',desc:'Learn one tongue twister and say it perfectly 3 times fast.',tag:'voice'},
+  {name:'Emotion Charades',desc:'Act out 5 different emotions — family guesses each one.',tag:'improv'},
+  {name:'Backwards Story',desc:'Tell a story starting from the end and working backwards.',tag:'improv'},
+  {name:'Debate Me',desc:'Pick a fun topic (e.g. "Dogs vs Cats") and argue both sides.',tag:'voice'},
+  {name:'Kindness Map',desc:'Draw a map of your day and mark every kind thing you did.',tag:'social'},
+  {name:'Speed Memory',desc:'Look at 10 objects for 30 seconds. Cover them. Name all 10.',tag:'memory'},
+  {name:'Silence is Golden',desc:'Go 15 minutes using only gestures and facial expressions. No words!',tag:'improv'},
+  {name:'Gratitude Rap',desc:'Make up a short rap about 3 things you are grateful for.',tag:'joy'},
+  {name:'Teach Me',desc:'Explain any topic you know well to a family member in 3 minutes.',tag:'voice'},
+  {name:'Confidence Walk',desc:'Walk around the house like you own the place — head high, big steps!',tag:'mind'},
+  {name:'Secret Language',desc:'Invent 5 code words with a sibling or parent. Use them all day.',tag:'social'},
+  {name:'Memory Story',desc:'Create a funny story that includes 10 random words to remember them.',tag:'memory'},
+  {name:'Yes And...',desc:'Play "Yes And" improv with a partner — accept every idea and add to it.',tag:'improv'},
+  {name:'Laugh Factory',desc:'Tell 3 jokes you made up yourself. Perform them with full energy!',tag:'joy'},
+  {name:'Interview Time',desc:'Interview a family member for 5 minutes. Ask 5 thoughtful questions.',tag:'social'},
+  {name:'Mindful Minute',desc:'Sit quietly for 1 minute. Notice 5 things you can hear right now.',tag:'mind'},
+  {name:'Ad Pitch',desc:'Invent a product and pitch it to your family in 2 minutes.',tag:'voice'},
+  {name:'Emotion Playlist',desc:'Name a song for each of these: happy, sad, brave, silly, calm.',tag:'mind'},
+  {name:'Challenge Day',desc:'Set yourself a small challenge today and complete it before dinner.',tag:'mind'},
+  {name:'Family TED Talk',desc:'Give a 3-minute talk on anything you are passionate about.',tag:'voice'},
+  {name:'Random Acts',desc:'Do 3 random acts of kindness today without anyone knowing it was you.',tag:'social'},
+  {name:'Freeze Frame',desc:'Play freeze-frame acting — freeze mid-action and hold it for 10 seconds.',tag:'improv'},
+  {name:'Letter to Future Me',desc:'Write a short letter to yourself to read at the end of summer.',tag:'mind'},
+  {name:'Celebration Day',desc:'You did it! Pick your favourite challenge and do it one more time — perfectly.',tag:'joy'},
+];
+const JK_MOODS=[['😀','strong'],['😄','happy'],['😌','calm'],['🤔','curious'],['😎','brave']];
+const JK_QUESTIONS=[
+  'What was the bravest thing I did today?',
+  'Did I surprise myself with anything today?',
+  'What is one thing I want to do better tomorrow?',
+  'Who did I help or connect with today?',
+  'What made me feel most confident today?',
+  'If today was a movie, what would I title it?',
+];
+
+let jkState={
+  campName:'Champion Challenge',
+  curWeek:1,
+  days:Array(30).fill(null).map((_,i)=>({done:false,mood:null,week:Math.floor(i/7)+1,effort:0,energy:0,brave:0})),
+  pickedQ:null,
+  scores:{1:{effort:0,energy:0,brave:0},2:{effort:0,energy:0,brave:0},3:{effort:0,energy:0,brave:0},4:{effort:0,energy:0,brave:0}},
+};
+
+async function jkLoad(){
+  if(!API){jkRender();return;}
+  try{
+    const res=await fetch(`${API}?action=getChampionChallenge`);
+    const json=await res.json();
+    if(json.data){
+      json.data.forEach(row=>{
+        const i=Number(row.DayIndex);
+        if(i<0||i>29)return;
+        jkState.days[i].done=row.Done===true||row.Done==='TRUE';
+        jkState.days[i].mood=row.Mood!==''?Number(row.Mood):null;
+        const w=Number(row.Week)||1;
+        jkState.scores[w]={effort:Number(row.Effort)||0,energy:Number(row.Energy)||0,brave:Number(row.BraveMoments)||0};
+      });
+      if(json.data[0]) jkState.campName=json.data[0].CampName||'Champion Challenge';
+    }
+  }catch(e){console.warn('JK load failed',e);}
+  jkRender();
+}
+
+async function jkSaveDay(i){
+  if(!API)return;
+  const d=jkState.days[i];
+  const w=Math.floor(i/7)+1;
+  const sc=jkState.scores[w];
+  await fetch(API,{method:'POST',body:JSON.stringify({action:'saveChampionChallenge',DayIndex:i,Done:d.done,Mood:d.mood!==null?d.mood:'',Effort:sc.effort,Energy:sc.energy,BraveMoments:sc.brave,CampName:jkState.campName})});
+}
+
+function jkSelName(btn,name){
+  document.querySelectorAll('#jk-name-badges .name-badge').forEach(b=>b.classList.remove('active-jk'));
+  btn.classList.add('active-jk');
+  jkState.campName=name;
+  document.getElementById('jk-chosen-name').textContent=name;
+  if(jkState.days[0]) jkSaveDay(0);
+}
+
+function jkShowWeek(w){
+  jkState.curWeek=w;
+  document.querySelectorAll('#jk-week-tabs .wtab').forEach((b,i)=>{b.classList.toggle('active-jk',i+1===w);});
+  jkRenderTheme(); jkRenderDays(); jkRenderScore(); jkRenderQuestions();
+}
+
+function jkRender(){
+  // Sync name badge
+  document.querySelectorAll('#jk-name-badges .name-badge').forEach(b=>{
+    b.classList.toggle('active-jk',b.textContent===jkState.campName);
+  });
+  document.getElementById('jk-chosen-name').textContent=jkState.campName;
+  // Week tabs
+  const wt=document.getElementById('jk-week-tabs'); wt.innerHTML='';
+  JK_WEEKS.forEach((_,i)=>{
+    const btn=document.createElement('button');
+    btn.className='wtab'+(jkState.curWeek===i+1?' active-jk':'');
+    btn.textContent='Week '+(i+1);
+    btn.onclick=()=>jkShowWeek(i+1);
+    wt.appendChild(btn);
+  });
+  jkRenderProgress(); jkRenderTheme(); jkRenderDays(); jkRenderScore(); jkRenderQuestions();
+}
+
+function jkRenderProgress(){
+  const done=jkState.days.filter(d=>d.done).length;
+  const pct=Math.round((done/30)*100);
+  document.getElementById('jk-prog-label').textContent=`${done} of 30 days done`;
+  document.getElementById('jk-prog-pct').textContent=`${pct}%`;
+  document.getElementById('jk-prog-fill').style.width=pct+'%';
+}
+
+function jkRenderTheme(){
+  const wk=JK_WEEKS[jkState.curWeek-1];
+  const el=document.getElementById('jk-week-theme');
+  el.style.background=wk.color; el.style.borderColor=wk.border; el.style.color=wk.text;
+  el.innerHTML=`<strong>${wk.theme}</strong> — ${wk.desc}`;
+}
+
+function jkRenderDays(){
+  const grid=document.getElementById('jk-days-grid'); grid.innerHTML='';
+  const start=(jkState.curWeek-1)*7;
+  for(let i=start;i<Math.min(start+7,30);i++){
+    const d=jkState.days[i]; const day=JK_DAYS[i];
+    const moodsHtml=JK_MOODS.map((m,mi)=>`<button class="mood-btn${d.mood===mi?' sel':''}" onclick="jkToggleMood(${i},${mi})">${m[0]}</button>`).join('');
+    const card=document.createElement('div');
+    card.className='day-card'+(d.done?' done-jk':'');
+    card.innerHTML=`<div class="done-check">${d.done?'✅':''}</div>
+      <div class="day-num">Day ${i+1}</div>
+      <div class="day-name">${day.name}</div>
+      <div class="day-desc">${day.desc}</div>
+      <span class="day-tag tag-${day.tag}">${day.tag}</span>
+      <div class="mood-row">${moodsHtml}</div>`;
+    card.querySelector('.day-name').onclick=()=>jkToggleDone(i);
+    grid.appendChild(card);
+  }
+}
+
+function jkToggleDone(i){
+  jkState.days[i].done=!jkState.days[i].done;
+  jkRenderProgress(); jkRenderDays(); jkSaveDay(i);
+}
+
+function jkToggleMood(i,mi){
+  jkState.days[i].mood=jkState.days[i].mood===mi?null:mi;
+  jkRenderDays(); jkSaveDay(i);
+}
+
+function jkRenderScore(){
+  const grid=document.getElementById('jk-score-grid'); grid.innerHTML='';
+  const sc=jkState.scores[jkState.curWeek];
+  const cats=[{key:'effort',label:'Effort',emoji:'💪'},{key:'energy',label:'Energy',emoji:'⚡'},{key:'brave',label:'Brave moments',emoji:'🦁'}];
+  cats.forEach(cat=>{
+    const val=sc[cat.key];
+    const stars=[1,2,3].map(n=>`<span class="s-star${val>=n?' lit':''}" onclick="jkSetScore('${cat.key}',${n})">${cat.emoji}</span>`).join('');
+    grid.innerHTML+=`<div class="score-card"><div class="score-label">${cat.label}</div><div class="score-stars">${stars}</div></div>`;
+  });
+}
+
+function jkSetScore(key,val){
+  const w=jkState.curWeek;
+  jkState.scores[w][key]=jkState.scores[w][key]===val?0:val;
+  jkRenderScore();
+  const dayIdx=(w-1)*7;
+  jkSaveDay(dayIdx);
+}
+
+function jkRenderQuestions(){
+  const list=document.getElementById('jk-q-list'); list.innerHTML='';
+  JK_QUESTIONS.forEach((q,i)=>{
+    const el=document.createElement('div');
+    el.className='q-item'+(jkState.pickedQ===i?' picked-jk':'');
+    el.textContent=q;
+    el.onclick=()=>{jkState.pickedQ=jkState.pickedQ===i?null:i;jkRenderQuestions();};
+    list.appendChild(el);
+  });
+}
+
+// ════════════════════════════════════════════════════════════
+//  WILD EXPLORER ADVENTURE — PK
+// ════════════════════════════════════════════════════════════
+const PK_WEEKS=[
+  {label:'Week 1',theme:'Move & Explore',color:'#FAECE7',border:'#D85A30',text:'#712B13',desc:'Your body is amazing — let\'s move and discover!'},
+  {label:'Week 2',theme:'Story & Imagine',color:'#EEEDFE',border:'#AFA9EC',text:'#3C3489',desc:'Stories are magic — and you are the storyteller!'},
+  {label:'Week 3',theme:'Nature & Create',color:'#EAF3DE',border:'#97C459',text:'#27500A',desc:'Find wonder in the world around you.'},
+  {label:'Week 4',theme:'Feelings & Joy',color:'#FAEEDA',border:'#EF9F27',text:'#633806',desc:'Feel all the feelings — and celebrate YOU!'},
+];
+const PK_DAYS=[
+  {name:'Jump & Count',desc:'Jump as high as you can 10 times while counting out loud!',tag:'move'},
+  {name:'Animal Walk',desc:'Walk like 5 different animals around the house. Which is your favourite?',tag:'move'},
+  {name:'Balloon Keep-Up',desc:'Keep a balloon in the air for as long as you can using only your hands.',tag:'move'},
+  {name:'Story Rock',desc:'Find a rock outside. Give it a name and make up a story about it.',tag:'story'},
+  {name:'Shadow Dance',desc:'Dance in the sunlight and watch your shadow copy you!',tag:'move'},
+  {name:'Listen Walk',desc:'Go for a short walk and count every different sound you can hear.',tag:'listen'},
+  {name:'Silly Parade',desc:'March around the house playing pretend instruments in a silly parade.',tag:'move'},
+  {name:'Draw Your Dream',desc:'Draw a place you have never been but would love to visit.',tag:'create'},
+  {name:'Cloud Stories',desc:'Look at clouds outside. What shapes can you see? Make up a story!',tag:'story'},
+  {name:'Nature Collection',desc:'Collect 5 small things from outside — leaf, stone, twig... Make art with them.',tag:'nature'},
+  {name:'Feelings Faces',desc:'Make a face for each feeling: happy, sad, surprised, angry, silly, calm.',tag:'feel'},
+  {name:'Sock Puppet',desc:'Make a puppet from an old sock. Put on a 1-minute show for your family.',tag:'create'},
+  {name:'Puddle Jump',desc:'Find (or make!) a puddle. Jump in it 5 times. Describe the feeling!',tag:'move'},
+  {name:'Bedtime Story Creator',desc:'Make up a short bedtime story to tell a soft toy or sibling tonight.',tag:'story'},
+  {name:'Leaf Print',desc:'Find interesting leaves and make prints by pressing them on paper.',tag:'nature'},
+  {name:'Freeze Dance',desc:'Dance when music plays — freeze when it stops. Play with family!',tag:'move'},
+  {name:'Emotion Colour',desc:'Pick a colour for each feeling. Draw a rainbow of emotions!',tag:'feel'},
+  {name:'Bug Hotel',desc:'Make a tiny house for bugs using sticks, leaves, and stones in the garden.',tag:'nature'},
+  {name:'Story Stones',desc:'Draw pictures on 5 stones — use them to tell a different story each time.',tag:'story'},
+  {name:'Joyful List',desc:'Write or draw 10 things that make you feel happy. Stick it on your wall!',tag:'joy'},
+  {name:'Mud Kitchen',desc:'Make pretend food in a mud kitchen or sandpit. What are you cooking?',tag:'create'},
+  {name:'Gratitude Garden',desc:'Draw a flower for each person you love. Write their name in the petals.',tag:'feel'},
+  {name:'Sound Map',desc:'Sit quietly and draw a map of all the sounds you can hear around you.',tag:'listen'},
+  {name:'Hug Challenge',desc:'Give every person at home a big hug today. How does it make you feel?',tag:'joy'},
+  {name:'Mini Obstacle Course',desc:'Make an obstacle course in the garden or living room. Time yourself!',tag:'move'},
+  {name:'Watercolour Sky',desc:'Paint a sky — sunrise, sunset, stormy, or sunny. Use as many colours as you like.',tag:'create'},
+  {name:'Silly Poem',desc:'Make up a silly rhyming poem about your favourite food.',tag:'story'},
+  {name:'Nature Mandala',desc:'Collect leaves and petals and arrange them into a beautiful circle pattern.',tag:'nature'},
+  {name:'Kindness Jar',desc:'Write one kind thing you can do for someone — then do it before bedtime!',tag:'feel'},
+  {name:'Big Celebration',desc:'You finished! Do your favourite activity from the whole 30 days — one last time!',tag:'joy'},
+];
+const PK_STICKERS=['🌟','🎉','🦁','🏏','🐘'];
+const PK_QUESTIONS=[
+  'What was the most fun thing I did today?',
+  'Did I learn something new today? What was it?',
+  'How did my body feel after moving today?',
+  'Who made me smile today? How?',
+  'What is something I want to try tomorrow?',
+  'If I could do today again, what would I change?',
+  'What made me feel proud of myself today?',
+];
+
+let pkState={
+  campName:'Wild Explorer',
+  curWeek:1,
+  days:Array(30).fill(null).map((_,i)=>({done:false,sticker:null,week:Math.floor(i/7)+1,triedIt:0,hadFun:0,finishedIt:0})),
+  pickedQ:null,
+  scores:{1:{a:0,b:0,c:0},2:{a:0,b:0,c:0},3:{a:0,b:0,c:0},4:{a:0,b:0,c:0}},
+};
+
+async function pkLoad(){
+  if(!API){pkRender();return;}
+  try{
+    const res=await fetch(`${API}?action=getWildExplorer`);
+    const json=await res.json();
+    if(json.data){
+      json.data.forEach(row=>{
+        const i=Number(row.DayIndex);
+        if(i<0||i>29)return;
+        pkState.days[i].done=row.Done===true||row.Done==='TRUE';
+        pkState.days[i].sticker=row.Sticker!==''?Number(row.Sticker):null;
+        const w=Number(row.Week)||1;
+        pkState.scores[w]={a:Number(row.TriedIt)||0,b:Number(row.HadFun)||0,c:Number(row.FinishedIt)||0};
+      });
+      if(json.data[0]) pkState.campName=json.data[0].CampName||'Wild Explorer';
+    }
+  }catch(e){console.warn('PK load failed',e);}
+  pkRender();
+}
+
+async function pkSaveDay(i){
+  if(!API)return;
+  const d=pkState.days[i];
+  const w=Math.floor(i/7)+1;
+  const sc=pkState.scores[w];
+  await fetch(API,{method:'POST',body:JSON.stringify({action:'saveWildExplorer',DayIndex:i,Done:d.done,Sticker:d.sticker!==null?d.sticker:'',TriedIt:sc.a,HadFun:sc.b,FinishedIt:sc.c,CampName:pkState.campName})});
+}
+
+function pkSelName(btn,name){
+  document.querySelectorAll('#pk-name-badges .name-badge').forEach(b=>b.classList.remove('active-pk'));
+  btn.classList.add('active-pk');
+  pkState.campName=name;
+  document.getElementById('pk-chosen-name').textContent=name;
+  if(pkState.days[0]) pkSaveDay(0);
+}
+
+function pkShowWeek(w){
+  pkState.curWeek=w;
+  document.querySelectorAll('#pk-week-tabs .wtab').forEach((b,i)=>{b.classList.toggle('active-pk',i+1===w);});
+  pkRenderTheme(); pkRenderDays(); pkRenderScore(); pkRenderQuestions();
+}
+
+function pkRender(){
+  document.querySelectorAll('#pk-name-badges .name-badge').forEach(b=>{
+    b.classList.toggle('active-pk',b.textContent===pkState.campName);
+  });
+  document.getElementById('pk-chosen-name').textContent=pkState.campName;
+  const wt=document.getElementById('pk-week-tabs'); wt.innerHTML='';
+  PK_WEEKS.forEach((_,i)=>{
+    const btn=document.createElement('button');
+    btn.className='wtab'+(pkState.curWeek===i+1?' active-pk':'');
+    btn.textContent='Week '+(i+1);
+    btn.onclick=()=>pkShowWeek(i+1);
+    wt.appendChild(btn);
+  });
+  pkRenderProgress(); pkRenderTheme(); pkRenderDays(); pkRenderScore(); pkRenderQuestions();
+}
+
+function pkRenderProgress(){
+  const done=pkState.days.filter(d=>d.done).length;
+  const pct=Math.round((done/30)*100);
+  document.getElementById('pk-prog-label').textContent=`${done} of 30 days done`;
+  document.getElementById('pk-prog-pct').textContent=`${pct}%`;
+  document.getElementById('pk-prog-fill').style.width=pct+'%';
+}
+
+function pkRenderTheme(){
+  const wk=PK_WEEKS[pkState.curWeek-1];
+  const el=document.getElementById('pk-week-theme');
+  el.style.background=wk.color; el.style.borderColor=wk.border; el.style.color=wk.text;
+  el.innerHTML=`<strong>${wk.theme}</strong> — ${wk.desc}`;
+}
+
+function pkRenderDays(){
+  const grid=document.getElementById('pk-days-grid'); grid.innerHTML='';
+  const start=(pkState.curWeek-1)*7;
+  for(let i=start;i<Math.min(start+7,30);i++){
+    const d=pkState.days[i]; const day=PK_DAYS[i];
+    const stickersHtml=PK_STICKERS.map((s,si)=>`<button class="sticker-btn${d.sticker===si?' sel':''}" onclick="pkToggleSticker(${i},${si})">${s}</button>`).join('');
+    const card=document.createElement('div');
+    card.className='day-card'+(d.done?' done-pk':'');
+    card.innerHTML=`<div class="done-check">${d.done?'✅':''}</div>
+      <div class="day-num">Day ${i+1}</div>
+      <div class="day-name">${day.name}</div>
+      <div class="day-desc">${day.desc}</div>
+      <span class="day-tag tag-${day.tag}">${day.tag}</span>
+      <div class="sticker-row">${stickersHtml}</div>`;
+    card.querySelector('.day-name').onclick=()=>pkToggleDone(i);
+    grid.appendChild(card);
+  }
+}
+
+function pkToggleDone(i){
+  pkState.days[i].done=!pkState.days[i].done;
+  pkRenderProgress(); pkRenderDays(); pkSaveDay(i);
+}
+
+function pkToggleSticker(i,si){
+  pkState.days[i].sticker=pkState.days[i].sticker===si?null:si;
+  pkRenderDays(); pkSaveDay(i);
+}
+
+function pkRenderScore(){
+  const grid=document.getElementById('pk-score-grid'); grid.innerHTML='';
+  const sc=pkState.scores[pkState.curWeek];
+  const cats=[{key:'a',label:'Tried it!',emoji:'🌟'},{key:'b',label:'Had fun',emoji:'😄'},{key:'c',label:'Finished it',emoji:'🏆'}];
+  cats.forEach(cat=>{
+    const val=sc[cat.key];
+    const stars=[1,2,3].map(n=>`<span class="s-star${val>=n?' lit':''}" onclick="pkSetScore('${cat.key}',${n})">${cat.emoji}</span>`).join('');
+    grid.innerHTML+=`<div class="score-card"><div class="score-label">${cat.label}</div><div class="score-stars">${stars}</div></div>`;
+  });
+}
+
+function pkSetScore(key,val){
+  const w=pkState.curWeek;
+  pkState.scores[w][key]=pkState.scores[w][key]===val?0:val;
+  pkRenderScore();
+  pkSaveDay((w-1)*7);
+}
+
+function pkRenderQuestions(){
+  const list=document.getElementById('pk-q-list'); list.innerHTML='';
+  PK_QUESTIONS.forEach((q,i)=>{
+    const el=document.createElement('div');
+    el.className='q-item'+(pkState.pickedQ===i?' picked-pk':'');
+    el.textContent=q;
+    el.onclick=()=>{pkState.pickedQ=pkState.pickedQ===i?null:i;pkRenderQuestions();};
+    list.appendChild(el);
+  });
+}
 </script>
 </body>
 </html>
