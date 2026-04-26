@@ -253,6 +253,51 @@ main{max-width:960px;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
 .section-h3{font-size:14px;font-weight:500;margin:1.4rem 0 .5rem;color:var(--ink);}
 .tip-box{background:var(--warm);border-radius:8px;padding:11px 13px;font-size:12px;color:var(--ink-m);line-height:1.7;margin-top:.5rem;border:1px solid var(--bd);}
 .ch-field-label{font-size:11px;font-weight:500;color:var(--ink-m);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;}
+
+/* ── TAB HIERARCHY ── */
+.tab-more-btn{padding:.85rem 1rem;font-size:13px;font-weight:500;color:var(--ink-m);cursor:pointer;white-space:nowrap;border:none;background:none;font-family:'DM Sans',sans-serif;border-bottom:2px solid transparent;display:flex;align-items:center;gap:4px;}
+.tab-more-btn:hover{color:var(--ink);}
+.tab-dropdown{position:absolute;top:100%;right:0;background:var(--warm);border:1px solid var(--bd);border-radius:0 0 10px 10px;box-shadow:0 6px 20px rgba(0,0,0,.1);min-width:180px;z-index:200;display:none;}
+.tab-dropdown.open{display:block;}
+.tab-dropdown .tab{display:block;border-bottom:none;padding:.65rem 1rem;font-size:13px;}
+.tab-more-wrap{position:relative;}
+/* ── LITE / FULL MODE ── */
+.mode-bar{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;padding:.55rem .75rem;background:var(--gold-l);border:1px solid var(--gold-m);border-radius:8px;font-size:12px;color:var(--gold);}
+.mode-bar strong{color:var(--ink);}
+.mode-toggle{display:flex;border:1px solid var(--bd);border-radius:20px;overflow:hidden;margin-left:auto;}
+.mode-btn{padding:4px 14px;font-size:11px;font-weight:500;cursor:pointer;border:none;background:transparent;font-family:'DM Sans',sans-serif;color:var(--ink-m);transition:all .15s;}
+.mode-btn.active{background:var(--ink);color:#fff;}
+.full-only{display:block;}
+.lite-mode .full-only{display:none;}
+/* ── ZERO-TECH SIDEBAR ── */
+.zt-box{background:#f0faf8;border:1px solid #a8d9c4;border-radius:8px;padding:.75rem 1rem;margin:.75rem 0;font-size:12px;line-height:1.7;}
+.zt-box-title{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#0F6E56;margin-bottom:.4rem;}
+.zt-prompt{background:#fff;border:1px solid #c8e6dc;border-radius:6px;padding:.5rem .75rem;font-family:monospace;font-size:11.5px;color:#1a1612;margin:.4rem 0;white-space:pre-wrap;word-break:break-word;cursor:pointer;position:relative;}
+.zt-prompt:hover{background:#f8fffe;}
+.zt-copy{position:absolute;top:5px;right:6px;font-size:10px;background:#0F6E56;color:#fff;border:none;border-radius:4px;padding:1px 6px;cursor:pointer;font-family:'DM Sans',sans-serif;opacity:0;transition:opacity .15s;}
+.zt-prompt:hover .zt-copy{opacity:1;}
+/* ── BUILDER RANK ── */
+.rank-bar{background:linear-gradient(135deg,#1C1C2E,#2d2d4e);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
+.rank-icon{font-size:2rem;line-height:1;}
+.rank-info{flex:1;}
+.rank-label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#8888aa;margin-bottom:2px;}
+.rank-name{font-size:1.1rem;font-weight:600;color:#fff;font-family:'Playfair Display',serif;}
+.rank-sub{font-size:11px;color:#a0a0c0;margin-top:2px;}
+.rank-prog{flex:2;min-width:200px;}
+.rank-prog-track{height:6px;background:rgba(255,255,255,.1);border-radius:3px;margin:.4rem 0;}
+.rank-prog-fill{height:6px;border-radius:3px;background:linear-gradient(90deg,#4F46E5,#7C3AED);transition:width .5s ease;}
+.rank-weeks{display:flex;gap:.35rem;margin-top:.5rem;flex-wrap:wrap;}
+.rw{width:28px;height:28px;border-radius:50%;border:2px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;transition:all .2s;}
+.rw.done{background:#4F46E5;border-color:#4F46E5;}
+.rw.current{border-color:#7C3AED;background:rgba(124,58,237,.2);}
+.rw.locked{opacity:.35;}
+.badge-shelf{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.75rem;}
+.badge{display:flex;flex-direction:column;align-items:center;gap:3px;padding:.5rem .6rem;border-radius:8px;border:1px solid var(--bd);background:var(--warm);min-width:64px;cursor:default;}
+.badge.earned{border-color:#4F46E5;background:#EEF2FF;}
+.badge.locked{opacity:.35;filter:grayscale(1);}
+.badge-icon{font-size:1.4rem;}
+.badge-name{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-m);text-align:center;}
+.badge.earned .badge-name{color:#4F46E5;}
 </style>
 </head>
 <body>
@@ -298,14 +343,20 @@ main{max-width:960px;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
 
 <!-- NAV -->
 <nav class="nav">
-  <div class="nav-i">
-    <div class="tab active" onclick="showSec('timetable',this)">Timetable</div>
-    <div class="tab" onclick="showSec('curriculum',this)">Curriculum</div>
-    <div class="tab" onclick="showSec('menu',this)">Daily menu</div>
-    <div class="tab" onclick="showSec('resources',this)">Resources & links</div>
-    <div class="tab" onclick="showSec('tracker',this)">Progress tracker</div>
-    <div class="tab" onclick="showSec('challenge',this)">Champion Challenge <span class="tab-badge jk-badge">JK</span></div>
+  <div class="nav-i" style="position:relative;">
+    <div class="tab active" onclick="showSec('timetable',this)">This week</div>
+    <div class="tab" onclick="showSec('ailab',this)">🤖 AI Lab <span class="tab-badge jk-badge">JK</span></div>
+    <div class="tab" onclick="showSec('tracker',this)">Tracker</div>
+    <div class="tab" onclick="showSec('challenge',this)">Champion <span class="tab-badge jk-badge">JK</span></div>
     <div class="tab" onclick="showSec('wildexplorer',this)">Wild Explorer <span class="tab-badge pk-badge">PK</span></div>
+    <div class="tab-more-wrap">
+      <button class="tab-more-btn" onclick="toggleMoreTabs(this)">More ▾</button>
+      <div class="tab-dropdown" id="more-tabs">
+        <div class="tab" onclick="showSec('curriculum',this);closeMoreTabs()">Curriculum</div>
+        <div class="tab" onclick="showSec('menu',this);closeMoreTabs()">Daily menu</div>
+        <div class="tab" onclick="showSec('resources',this);closeMoreTabs()">Resources & links</div>
+      </div>
+    </div>
   </div>
 </nav>
 
@@ -378,7 +429,7 @@ main{max-width:960px;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
 
 <!-- CHAMPION CHALLENGE — JK -->
 <div id="challenge" class="sec">
-  <div class="sec-hdr"><h2>Champion Challenge <span class="jk-accent">· JK · 10 yrs</span></h2><p>30 days · 10–20 mins/day · confidence, voice, mindset</p></div>
+  <div class="sec-hdr"><h2>Champion Challenge <span class="jk-accent">· JK · 10 yrs</span></h2><p>30 days · 10–20 mins/day · voice, story, confidence, delivery — built for a 10-year-old</p></div>
   <div class="ch-name-row">
     <div class="ch-field-label">Camp name</div>
     <div class="badge-row" id="jk-name-badges">
@@ -409,10 +460,10 @@ main{max-width:960px;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
   </table>
   <h3 class="section-h3">Parent language guide</h3>
   <div class="rules-grid">
-    <div class="rule-dont"><div class="rule-title">Avoid saying</div>That was wrong.<br>You didn't try hard enough.<br>Why can't you just do it?<br>Let me show you the right way.</div>
-    <div class="rule-do"><div class="rule-title">Instead say</div>What did you notice?<br>That took courage to try.<br>What would you do differently?<br>I love watching you figure things out.</div>
+    <div class="rule-dont"><div class="rule-title">Avoid saying</div>That was embarrassing.<br>You were too quiet / too loud.<br>Why are you so nervous?<br>Just be more confident.<br>That story didn't make sense.</div>
+    <div class="rule-do"><div class="rule-title">Instead say (your coach's language)</div>I noticed you held eye contact — that was strong.<br>What part felt brave to you?<br>Tell me more about that story.<br>That took guts — I saw it.<br>What would you do differently next time?</div>
   </div>
-  <div class="tip-box" style="margin-top:1rem;">⭐ Tip: Mark each day done right after the activity — even a partial attempt counts. Progress over perfection!</div>
+  <div class="tip-box" style="margin-top:1rem;">⭐ <strong>Key principle:</strong> Kids who learn to push through fear in public speaking take more chances in every area of their lives. The 30-day challenge isn't about perfect speeches — it's about building the habit of walking through discomfort. Even a 10-minute attempt counts. Mark it done. Keep the streak.</div>
 </div>
 
 <!-- WILD EXPLORER ADVENTURE — PK -->
@@ -456,6 +507,359 @@ main{max-width:960px;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
 
 </main>
 
+<!-- AI LAB — MERGED CURRICULUM + PARENT GUIDE -->
+<div id="ailab" class="sec">
+  <div class="sec-hdr">
+    <h2>🤖 AI Lab <span class="jk-accent">· JK · 6 weeks at home</span></h2>
+    <p>One tab for everything — concept, parent prep, activity, build exercise, and resources.</p>
+  </div>
+
+  <!-- BUILDER RANK BAR -->
+  <div class="rank-bar" id="rank-bar">
+    <div class="rank-icon" id="rank-icon">🌱</div>
+    <div class="rank-info">
+      <div class="rank-label">Builder rank</div>
+      <div class="rank-name" id="rank-name">Curious Rookie</div>
+      <div class="rank-sub" id="rank-sub">Complete Week 1 to level up</div>
+    </div>
+    <div class="rank-prog">
+      <div style="font-size:10px;color:#8888aa;margin-bottom:2px;">Weeks completed</div>
+      <div class="rank-prog-track"><div class="rank-prog-fill" id="rank-fill" style="width:0%"></div></div>
+      <div class="rank-weeks" id="rank-weeks"></div>
+    </div>
+  </div>
+
+  <!-- BADGES -->
+  <div style="font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-m);margin-bottom:.5rem;">Earned badges</div>
+  <div class="badge-shelf" id="badge-shelf"></div>
+
+  <!-- MODE BAR -->
+  <div class="mode-bar" style="margin-top:1rem;">
+    <strong>Session mode:</strong> <span id="mode-label">Full Builder — 90 min/week</span>
+    <div class="mode-toggle">
+      <button class="mode-btn active" id="btn-full" onclick="setMode('full')">Full 90min</button>
+      <button class="mode-btn" id="btn-lite" onclick="setMode('lite')">Lite 30min</button>
+    </div>
+  </div>
+  <div id="lite-note" style="display:none;font-size:12px;color:var(--ink-m);margin-bottom:.75rem;padding:.5rem .75rem;background:var(--gold-l);border-radius:6px;">
+    <strong>Lite mode:</strong> Each week shows only the core concept, one activity, and the key prompting exercise. Skip the tech deep-dives and resources for now — add them when JK is ready.
+  </div>
+
+  <!-- CAPSTONE CARD -->
+  <div class="card" style="margin-bottom:1.25rem;background:linear-gradient(135deg,#1C1C2E,#2d2d4e);border:none;">
+    <div style="padding:1.1rem 1.25rem;">
+      <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8888aa;margin-bottom:.4rem;">The capstone — what JK is building</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:#fff;margin-bottom:.5rem;">A camera app that speaks what it sees — for people who are blind</div>
+      <div style="font-size:12px;color:#a0a0c0;line-height:1.7;margin-bottom:.8rem;">Point the phone camera at anything. Tap one button. The app describes what it sees out loud. Built entirely through prompting Claude — no copy-pasted code. Installed on iPhone as a real PWA. Demonstrated live at school.</div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:2px 10px;font-size:11px;color:#c0c0e0;">iPhone PWA</span>
+        <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:2px 10px;font-size:11px;color:#c0c0e0;">Claude Vision API</span>
+        <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:2px 10px;font-size:11px;color:#c0c0e0;">Prompt-only build</span>
+        <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:2px 10px;font-size:11px;color:#c0c0e0;">School showcase</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLUMN HEADERS -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:.4rem;">
+    <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--jk);padding:0 .25rem;">👨 Parent — read this before the session</div>
+    <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--acc);padding:0 .25rem;">👦 JK — what he does this week</div>
+  </div>
+
+  <!-- WEEK 1 -->
+  <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:#fff;background:#4F46E5;border-radius:8px 8px 0 0;padding:7px 14px;margin-top:1.25rem;display:flex;justify-content:space-between;align-items:center;">
+    <span>Week 1 · How AI Actually Thinks</span>
+    <span style="font-weight:400;opacity:.8;font-size:10px;">Deck slides 1–3 · Prompt as a question</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #c7d2fe;border-top:none;border-radius:0 0 8px 8px;overflow:hidden;margin-bottom:1rem;">
+    <div style="padding:1rem;border-right:1px solid #c7d2fe;background:#fafafa;">
+      <div class="wlbl">Core concept</div>
+      <div class="wval" style="margin-bottom:.75rem;">Old computers matched exact words. Modern AI understands <em>meaning</em>. A neuron's only job is to fire (ping) when enough neighbours fire first. Learning = adjusting vote strengths, not rewriting rules.</div>
+      <div class="wlbl">The analogy that lands</div>
+      <div class="wval" style="margin-bottom:.75rem;">Old search = robot librarian who only fetches a book if you say the exact title. Say "hound" instead of "dog" — nothing. AI = a friend who knows you want a dog book even if you say "furry animal that fetches sticks."</div>
+      <div class="wlbl">Activity first — no laptop (15 min)</div>
+      <div class="wval" style="margin-bottom:.75rem;"><strong>Mind Reader Game:</strong> JK describes an animal's vibe only. You guess. Swap. "Loves chasing spherical objects, sleeps on my feet" = dog.<br><br class="full-only"><span class="full-only"><strong>Ping Handshake:</strong> Hold hands in a circle. Squeeze = Ping. Brain only raises other hand if two squeezes arrive simultaneously. You are a neural network.</span></div>
+      <div class="wlbl" style="color:#92400E;">What to say when stuck</div>
+      <div class="wval" style="background:#FFFBEB;border-left:3px solid #D97706;padding:8px 10px;border-radius:0 5px 5px 0;font-size:12px;">"But HOW does it understand?" → "That's next week. Short answer: millions of tiny on/off switches that vote."<br><br class="full-only"><span class="full-only">"Is it actually thinking?" → "Scientists disagree. Hinton says our brains do the same with neurons — which makes it hard to say AI is just pretending."</span></div>
+    </div>
+    <div style="padding:1rem;background:#F5F8FF;">
+      <div class="full-only">
+        <div class="wlbl" style="color:#4F46E5;">Tech introduced this week</div>
+        <div class="wval" style="margin-bottom:.75rem;">• <strong>HTML</strong> — a language that describes structure. Browser reads it, builds the page.<br>• <strong>Browser</strong> — turns HTML into what you see.<br>• <strong>API</strong> — a door that lets two programs talk. Waiter analogy: you (app) order via waiter (API), kitchen (Claude) makes it.</div>
+      </div>
+      <div class="wlbl" style="color:#4F46E5;">Prompting exercise</div>
+      <div class="wval" style="margin-bottom:.75rem;">Ask Claude the same question 5 times, each richer:<br><br>1. "what is AI"<br>2. "What is artificial intelligence?"<br>3. "Explain AI to a 10-year-old"<br>4. "Explain AI to a 10-year-old who loves cricket, using cricket analogies"<br>5. "I'm 10, love cricket and robots. Explain how AI thinks using things I already know"<br><br>Write: what changed between 1 and 5? Which was most useful? Why?</div>
+
+      <!-- ZERO-TECH SIDEBAR -->
+      <div class="zt-box">
+        <div class="zt-box-title">🟢 Zero-tech parent — just copy this</div>
+        No API, no Replit, no setup needed this week. Open Claude.ai together and paste:<br>
+        <div class="zt-prompt" onclick="copyZT(this)">Explain how AI works to my 10-year-old son who loves cricket and building robots. Use analogies from cricket. Keep it under 200 words.<button class="zt-copy">Copy</button></div>
+        Then ask JK: "Does that feel right? What would you change about the explanation?"
+      </div>
+
+      <div class="full-only">
+        <div class="wlbl" style="color:#4F46E5;margin-top:.75rem;">Build progress</div>
+        <div class="wval" style="margin-bottom:.75rem;">Nothing built yet — intentional. This week builds the mental model that makes everything else make sense.</div>
+        <div class="wlbl" style="color:#4F46E5;">Robotics connection</div>
+        <div class="wval" style="margin-bottom:.75rem;">The PJ touch sensor IS a neuron — fires when pressure crosses a threshold, exactly like the Ping Handshake.</div>
+        <div class="wlbl" style="color:#4F46E5;">Resources</div>
+        <div class="wval">📺 <a href="https://www.youtube.com/watch?v=aircAruvnKk" target="_blank">3Blue1Brown — "But what is a neural network?"</a> (19 min)<br>🎮 <a href="https://teachablemachine.withgoogle.com" target="_blank">Teachable Machine</a> — train a real neural net with webcam in 5 min</div>
+      </div>
+      <div style="margin-top:.75rem;text-align:right;">
+        <button onclick="markWeekDone(1,this)" style="background:#4F46E5;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;">✓ Week 1 done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 2 -->
+  <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:#fff;background:#0891B2;border-radius:8px 8px 0 0;padding:7px 14px;margin-top:.5rem;display:flex;justify-content:space-between;align-items:center;">
+    <span>Week 2 · Talking to AI Like a Pro</span>
+    <span style="font-weight:400;opacity:.8;font-size:10px;">Deck slides 4–5 · Prompt as a specification</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #a5f3fc;border-top:none;border-radius:0 0 8px 8px;overflow:hidden;margin-bottom:1rem;">
+    <div style="padding:1rem;border-right:1px solid #a5f3fc;background:#fafafa;">
+      <div class="wlbl">Core concept</div>
+      <div class="wval" style="margin-bottom:.75rem;">AI converts words into features and predicts meaning. "Tuesday" and "Wednesday" fire almost identical neuron patterns. The Super-Guesser picks the statistically most likely next word from billions of examples.</div>
+      <div class="wlbl">The analogy that lands</div>
+      <div class="wval" style="margin-bottom:.75rem;">Phone autocomplete trained on every book ever written. "Peanut butter and..." → "jelly" (99%). Not smart — just seen that sequence billions of times. The 1986 breakthrough: let the computer fix its own trillion connections by working backwards from mistakes. Like adjusting your cricket bat after a miss — but every muscle simultaneously.</div>
+      <div class="wlbl">Activity first — no laptop (10 min)</div>
+      <div class="wval" style="margin-bottom:.75rem;"><strong>One-Word Story:</strong> Each person adds one word. "The... cat... sat... on..." Notice your brain autocompletes. Then give Claude the same 4 words. Compare. Is Claude more logical? More surprising?</div>
+      <div class="wlbl" style="color:#92400E;">What to say when stuck</div>
+      <div class="wval" style="background:#FFFBEB;border-left:3px solid #D97706;padding:8px 10px;border-radius:0 5px 5px 0;font-size:12px;">"Is AI just guessing?" → "Yes — from having read everything humans ever wrote. Your brain guesses too — 'I'll be...' → you think 'back' before they finish."</div>
+    </div>
+    <div style="padding:1rem;background:#F0FFFE;">
+      <div class="full-only">
+        <div class="wlbl" style="color:#0891B2;">Tech introduced this week</div>
+        <div class="wval" style="margin-bottom:.75rem;">• <strong>JavaScript</strong> — makes pages interactive. HTML = walls of a house. JS = lights and switches.<br>• <strong>Function</strong> — a named set of instructions. "whenButtonPressed() → open camera"<br>• <strong>Camera API</strong> — a door built into every browser that lets JS ask for camera access.</div>
+      </div>
+      <div class="wlbl" style="color:#0891B2;">Prompting exercise</div>
+      <div class="wval" style="margin-bottom:.75rem;">Ask Claude: <em>"Build me a single HTML page with one big button in the centre. When tapped, ask for camera permission and show the live camera view. Nothing else."</em><br><br>Save the output. Open in Safari. Does it work? If not — don't fix it. Ask JK: "What did Claude misunderstand? How would you describe the problem back to it?" Let him iterate. <strong>This broken page = Prototype Zero.</strong></div>
+
+      <div class="zt-box">
+        <div class="zt-box-title">🟢 Zero-tech parent — just copy this</div>
+        If Replit feels overwhelming, just open Claude.ai and paste this for JK:<br>
+        <div class="zt-prompt" onclick="copyZT(this)">Build me a single HTML page. It has one large button that says "Show Camera". When I tap it, it asks for camera permission and shows the camera view below the button. Make the button big and easy to tap on a phone. Give me the complete HTML file.<button class="zt-copy">Copy</button></div>
+        Save the response as a .html file on the laptop. Open it in Safari. Done.
+      </div>
+
+      <div class="full-only">
+        <div class="wlbl" style="color:#0891B2;margin-top:.75rem;">Build progress</div>
+        <div class="wval" style="margin-bottom:.75rem;">End of week: one HTML page, one button, camera opens. No AI yet. That's the foundation.</div>
+        <div class="wlbl" style="color:#0891B2;">Resources</div>
+        <div class="wval">📺 <a href="https://www.youtube.com/watch?v=7UmKE0dCauQ" target="_blank">Computerphile — "How LLMs Work"</a> (12 min)<br>🔗 <a href="https://replit.com" target="_blank">Replit.com</a> — set up free account this week</div>
+      </div>
+      <div style="margin-top:.75rem;text-align:right;">
+        <button onclick="markWeekDone(2,this)" style="background:#0891B2;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;">✓ Week 2 done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 3 -->
+  <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:#fff;background:#059669;border-radius:8px 8px 0 0;padding:7px 14px;margin-top:.5rem;display:flex;justify-content:space-between;align-items:center;">
+    <span>Week 3 · First Working Prototype</span>
+    <span style="font-weight:400;opacity:.8;font-size:10px;">Deck slide 5 · Prompt as a build brief</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #6ee7b7;border-top:none;border-radius:0 0 8px 8px;overflow:hidden;margin-bottom:1rem;">
+    <div style="padding:1rem;border-right:1px solid #6ee7b7;background:#fafafa;">
+      <div class="wlbl">Core concept</div>
+      <div class="wval" style="margin-bottom:.75rem;">The Synthesis Ladder — how AI sees images. Pixel → edge → beak → bird. Trillions of these chains fire simultaneously in 0.01 seconds. This is what happens when your app sends a photo to Claude.</div>
+      <div class="wlbl">The analogy that lands</div>
+      <div class="wval" style="margin-bottom:.75rem;">Open Google Images. Upload any animal photo. Watch it identify instantly. Say: "Every layer of the Synthesis Ladder just fired to produce that." Then: "When our app sends a photo to Claude, the same thing happens — and Claude describes what it saw in words."</div>
+      <div class="wlbl">Activity first (5 min)</div>
+      <div class="wval" style="margin-bottom:.75rem;">Show Deck Slide 5. Walk the ladder: pixel → edge → beak → bird. Ask: "If you were a neuron on Level 2, what's your only job?" (Answer: detect one specific edge.) That specificity = how it gets so accurate.</div>
+      <div class="wlbl" style="color:#92400E;">What to say when stuck</div>
+      <div class="wval" style="background:#FFFBEB;border-left:3px solid #D97706;padding:8px 10px;border-radius:0 5px 5px 0;font-size:12px;">"Why does it get things wrong?" → "Bad lighting changes the edges. The pattern doesn't match. It guesses wrong. That's why we add a honesty note in Week 5."</div>
+    </div>
+    <div style="padding:1rem;background:#F0FFF8;">
+      <div class="full-only">
+        <div class="wlbl" style="color:#059669;">Tech introduced this week</div>
+        <div class="wval" style="margin-bottom:.75rem;">• <strong>API key</strong> — secret password that identifies your app to Claude. Never share it.<br>• <strong>JSON</strong> — structured info between programs. Like a labelled lunchbox: {food: "sandwich", filling: "cheese"}.<br>• <strong>Base64</strong> — how images become text to travel through the internet.</div>
+      </div>
+      <div class="wlbl" style="color:#059669;">Prompting exercise</div>
+      <div class="wval" style="margin-bottom:.75rem;">JK prompts Claude (include Prototype Zero code in the prompt):<br><br><em>"Here is my existing HTML camera page. Add a 'Describe' button. When tapped: capture a camera frame, convert it to base64, send it to the Claude API using this key [KEY], and show the description on screen."</em><br><br>The key realisation JK needs to make himself: Claude needs the existing code as context. Don't hint — let him discover this.</div>
+
+      <div class="zt-box">
+        <div class="zt-box-title">🟢 Zero-tech parent — just copy this</div>
+        Get a free Claude API key at <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>. Then have JK paste this (with his code added):<br>
+        <div class="zt-prompt" onclick="copyZT(this)">Here is my HTML camera page: [PASTE JK'S CODE HERE]
+
+Add a big "Describe" button. When tapped, capture a frame from the camera, convert it to base64, send it to the Claude API (key: [PASTE KEY]) and display what Claude says it sees. Keep it simple.<button class="zt-copy">Copy</button></div>
+      </div>
+
+      <div class="full-only">
+        <div class="wlbl" style="color:#059669;margin-top:.75rem;">Build progress</div>
+        <div class="wval" style="margin-bottom:.75rem;">End of week: camera → Claude API → text description. The first time the app does something genuinely useful. Celebrate this.</div>
+        <div class="wlbl" style="color:#059669;">Resources</div>
+        <div class="wval">📺 <a href="https://www.youtube.com/watch?v=iR2O2GPbB0E" target="_blank">MuleSoft — "What is an API?"</a> (3 min) — watch together before this session<br>🔗 <a href="https://docs.anthropic.com" target="_blank">Claude API docs</a></div>
+      </div>
+      <div style="margin-top:.75rem;text-align:right;">
+        <button onclick="markWeekDone(3,this)" style="background:#059669;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;">✓ Week 3 done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 4 -->
+  <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:#fff;background:#D97706;border-radius:8px 8px 0 0;padding:7px 14px;margin-top:.5rem;display:flex;justify-content:space-between;align-items:center;">
+    <span>Week 4 · Design for a Real User</span>
+    <span style="font-weight:400;opacity:.8;font-size:10px;">Deck slides 6–7 · Prompt as a design brief</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #fde68a;border-top:none;border-radius:0 0 8px 8px;overflow:hidden;margin-bottom:1rem;">
+    <div style="padding:1rem;border-right:1px solid #fde68a;background:#fafafa;">
+      <div class="wlbl">Core concept</div>
+      <div class="wval" style="margin-bottom:.75rem;">RLHF — without human feedback AI just predicts text, including toxic text. Humans score outputs. Scores adjust connection strengths. The person writing the reward rules has enormous power. This week JK writes his own reward rules: the system prompt.</div>
+      <div class="wlbl">The analogy that lands</div>
+      <div class="wval" style="margin-bottom:.75rem;">Training a puppy. Treat = reward signal. "No" = penalty. Different trainers → different personalities. Point at JK's system prompt: "You are the trainer this week."</div>
+      <div class="wlbl">Activity first (10 min, no laptop)</div>
+      <div class="wval" style="margin-bottom:.75rem;"><strong>Hot & Cold:</strong> Hide an object. JK is the AI. You can only say "beep" (warm) or "bop" (cold). Watch how fast he adapts from feedback alone. That IS RLHF.<br><br class="full-only"><span class="full-only"><strong>Persuasion Detective:</strong> Convince JK to eat broccoli. Round 1: facts. Round 2: connect to his favourite cricket player. Notice how Round 2 feels different — that's what bad actors exploit.</span></div>
+      <div class="wlbl" style="color:#92400E;">What to say when stuck</div>
+      <div class="wval" style="background:#FFFBEB;border-left:3px solid #D97706;padding:8px 10px;border-radius:0 5px 5px 0;font-size:12px;">"Who decides what's a good AI answer?" → "Whoever writes the reward function. At Anthropic, hundreds of human raters. In JK's app — JK."</div>
+    </div>
+    <div style="padding:1rem;background:#FFFDF0;">
+      <div class="full-only">
+        <div class="wlbl" style="color:#D97706;">Tech introduced this week</div>
+        <div class="wval" style="margin-bottom:.75rem;">• <strong>System prompt</strong> — hidden instructions that shape Claude's entire behaviour.<br>• <strong>Web Speech API</strong> — browser's built-in voice. One line does it.<br>• <strong>PWA</strong> — Safari → Share → Add to Home Screen → real app icon.</div>
+      </div>
+      <div class="wlbl" style="color:#D97706;">Prompting exercise</div>
+      <div class="wval" style="margin-bottom:.75rem;"><strong>Part 1 — System prompt:</strong> JK prompts Claude: <em>"Help me write a system prompt for an AI that describes images to blind users. The tone should be [JK decides]. Always mention [JK decides]. Never [JK decides]."</em><br><br><strong>Part 2 — UI:</strong> <em>"Update my app so it's easy to use one-handed with eyes closed. Big button. High contrast. Speak the description aloud automatically."</em><br><br>Test: close eyes. Can you use the app? What needs to change?</div>
+
+      <div class="zt-box">
+        <div class="zt-box-title">🟢 Zero-tech parent — just copy this</div>
+        <div class="zt-prompt" onclick="copyZT(this)">Write a system prompt for an AI assistant that describes images to blind users. It should: be warm and friendly, always describe colours and textures, mention if something looks dangerous, never assume what the person wants to do with the object.<button class="zt-copy">Copy</button></div>
+        Paste Claude's output into the system prompt field in the app code. JK can edit it however he likes.
+      </div>
+
+      <div class="full-only">
+        <div class="wlbl" style="color:#D97706;margin-top:.75rem;">Build progress</div>
+        <div class="wval" style="margin-bottom:.75rem;">End of week: app speaks, has a personality JK wrote, installs on iPhone. For the first time it feels like a real app.</div>
+        <div class="wlbl" style="color:#D97706;">Resources</div>
+        <div class="wval">📺 <a href="https://www.netflix.com/title/81254224" target="_blank">The Social Dilemma</a> (Netflix) — watch before this session<br>🔗 <a href="https://webaim.org/projects/screenreadersurvey10/" target="_blank">WebAIM Screen Reader Survey</a></div>
+      </div>
+      <div style="margin-top:.75rem;text-align:right;">
+        <button onclick="markWeekDone(4,this)" style="background:#D97706;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;">✓ Week 4 done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 5 -->
+  <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:#fff;background:#DC2626;border-radius:8px 8px 0 0;padding:7px 14px;margin-top:.5rem;display:flex;justify-content:space-between;align-items:center;">
+    <span>Week 5 · Safety, Guardrails & Trust</span>
+    <span style="font-weight:400;opacity:.8;font-size:10px;">Deck slide 6 · Prompt as a safety spec</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #fecaca;border-top:none;border-radius:0 0 8px 8px;overflow:hidden;margin-bottom:1rem;">
+    <div style="padding:1rem;border-right:1px solid #fecaca;background:#fafafa;">
+      <div class="wlbl">Core concept</div>
+      <div class="wval" style="margin-bottom:.75rem;">AI hallucinates — it confidently describes things that aren't there. For a sighted person: annoying. For a blind person trusting your app: genuinely dangerous. This week: build an app that knows when it might be wrong and says so.</div>
+      <div class="wlbl">The analogy that lands</div>
+      <div class="wval" style="margin-bottom:.75rem;">A sensor can be fooled — put a mirror in front of an object sensor and it reads nothing. AI can be fooled too. The Prism Prank from the deck: reporting what sensors detected isn't lying — it's a confident wrong answer. Hallucination is the same.</div>
+      <div class="wlbl">Activity (10 min)</div>
+      <div class="wval" style="margin-bottom:.75rem;"><strong>Spot the Fake:</strong> 3 AI images from Midjourney + 3 real news photos. Mixed up. Can you tell? What gives them away? Connect: if the image was fake, what else might be fake about the story?</div>
+      <div class="wlbl" style="color:#92400E;">What to say when stuck</div>
+      <div class="wval" style="background:#FFFBEB;border-left:3px solid #D97706;padding:8px 10px;border-radius:0 5px 5px 0;font-size:12px;">"Should we not build it then?" → "An honest imperfect description beats silence. The key word is honest — that's what we build this week."</div>
+    </div>
+    <div style="padding:1rem;background:#FFF8F8;">
+      <div class="full-only">
+        <div class="wlbl" style="color:#DC2626;">Tech introduced this week</div>
+        <div class="wval" style="margin-bottom:.75rem;">• <strong>Error handling</strong> — what happens when API fails or camera refuses<br>• <strong>Loading state</strong> — spinner while waiting<br>• <strong>Graceful degradation</strong> — app stays useful even when something breaks</div>
+      </div>
+      <div class="wlbl" style="color:#DC2626;">Prompting exercise</div>
+      <div class="wval" style="margin-bottom:.75rem;"><strong>Part 1 — Honesty:</strong> Update system prompt: <em>"If uncertain about any detail, say so. Use 'I think I can see...' or 'this might be...' rather than stating everything with equal confidence."</em><br><br><strong>Part 2 — Errors:</strong> Add loading spinner, camera-fail message, API-error fallback.<br><br><strong>Stress test:</strong> Dark room. Blurry object. Hand covering lens. Does the app handle these honestly?</div>
+
+      <div class="zt-box">
+        <div class="zt-box-title">🟢 Zero-tech parent — just copy this</div>
+        <div class="zt-prompt" onclick="copyZT(this)">Update my image description app's system prompt to add: if the AI is uncertain about any detail, it should say "I'm not certain, but this might be..." rather than stating things confidently. Also add a polite note if the image is too dark or blurry to describe well.<button class="zt-copy">Copy</button></div>
+      </div>
+
+      <div class="full-only">
+        <div class="wlbl" style="color:#DC2626;margin-top:.75rem;">Build progress</div>
+        <div class="wval" style="margin-bottom:.75rem;">End of week: app is functionally complete. Works, speaks, honest about uncertainty, fails gracefully. Week 6 is polish only.</div>
+        <div class="wlbl" style="color:#DC2626;">Resources</div>
+        <div class="wval">📖 <a href="https://www.aisnakeoil.com" target="_blank">AI Snake Oil</a> — Chapter 1 before this session<br>🔗 <a href="https://www.midjourney.com/showcase" target="_blank">Midjourney Showcase</a> — AI images for Spot the Fake</div>
+      </div>
+      <div style="margin-top:.75rem;text-align:right;">
+        <button onclick="markWeekDone(5,this)" style="background:#DC2626;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;">✓ Week 5 done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 6 -->
+  <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:#fff;background:#7C3AED;border-radius:8px 8px 0 0;padding:7px 14px;margin-top:.5rem;display:flex;justify-content:space-between;align-items:center;">
+    <span>Week 6 · Polish, Install & Showcase</span>
+    <span style="font-weight:400;opacity:.8;font-size:10px;">Deck slides 8–9 · Prompt as a pitch</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #c4b5fd;border-top:none;border-radius:0 0 8px 8px;overflow:hidden;margin-bottom:1rem;">
+    <div style="padding:1rem;border-right:1px solid #c4b5fd;background:#fafafa;">
+      <div class="wlbl">Core concept</div>
+      <div class="wval" style="margin-bottom:.75rem;">AI can be backed up and revived forever — but it can't feel what it's like to hand something useful to someone who needed it. That feeling drove JK through 5 weeks of frustration. AI can't be motivated by that. Humans can. That's the superpower.</div>
+      <div class="wlbl">Closing activity (Deck Slide 9)</div>
+      <div class="wval" style="margin-bottom:.75rem;"><strong>Human Superpower Map:</strong> Draw robot + human. List 3 things robot does better by 2030. List 3 things only humans can do. Which list excites JK more?<br><br><strong>Read the Family Manifesto aloud together.</strong> Then ask: "Which of our 6 sessions surprised you most?" Let JK answer fully before you share yours.</div>
+      <div class="wlbl" style="color:#92400E;">What to say when stuck</div>
+      <div class="wval" style="background:#FFFBEB;border-left:3px solid #D97706;padding:8px 10px;border-radius:0 5px 5px 0;font-size:12px;">"What if someone asks how it works at school?" → "You built it. You can explain every decision you made. That's more than most adults can say about the AI they use daily."</div>
+    </div>
+    <div style="padding:1rem;background:#FAF8FF;">
+      <div class="full-only">
+        <div class="wlbl" style="color:#7C3AED;">Tech introduced this week</div>
+        <div class="wval" style="margin-bottom:.75rem;">• <strong>PWA install:</strong> Safari → Share → Add to Home Screen → real icon, full-screen<br>• <strong>manifest.json</strong> — gives the app its name, icon colour, and installability<br>• <strong>Hosting:</strong> Replit gives a public URL anyone can visit</div>
+      </div>
+      <div class="wlbl" style="color:#7C3AED;">Prompting exercise</div>
+      <div class="wval" style="margin-bottom:.75rem;"><strong>Part 1 — Install:</strong> Ask Claude to add a manifest.json so the app installs on iPhone. JK chooses the name and icon colour. Install it. Open from home screen. That moment = the payoff.<br><br><strong>Part 2 — Showcase prep:</strong> <em>"I'm 10, presenting this app at school. Give me 10 tough judge questions and help me write honest answers."</em><br><br><strong>The demo:</strong> Blindfold a family member. Hand them the phone. One tap. Phone speaks. Practise until reliable 8/10 times.</div>
+
+      <div class="zt-box">
+        <div class="zt-box-title">🟢 Zero-tech parent — just copy this</div>
+        <div class="zt-prompt" onclick="copyZT(this)">My son built a camera app that describes images out loud for blind users. He's 10 years old and presenting it at school. Give him 10 tough questions a judge or teacher might ask, then write simple honest answers for each one that a 10-year-old could say naturally.<button class="zt-copy">Copy</button></div>
+      </div>
+
+      <div class="wlbl" style="color:#7C3AED;margin-top:.75rem;">The showcase script (2 min)</div>
+      <div class="wval" style="margin-bottom:.75rem;"><strong>30s — Problem:</strong> "250 million people have visual impairment. Most images online have no descriptions."<br><strong>45s — Solution:</strong> "I built an app that describes what it sees, out loud. I built it by writing instructions to an AI — no traditional coding."<br><strong>30s — Demo:</strong> [blindfold teacher, tap, phone speaks]<br><strong>15s — Learned:</strong> "I learned that AI works by [JK's own words]."</div>
+
+      <div class="full-only">
+        <div class="wlbl" style="color:#7C3AED;">Resources</div>
+        <div class="wval">📺 <a href="https://www.youtube.com/watch?v=jrK3PsD3APk" target="_blank">Geoffrey Hinton on The Weekly Show</a> — watch together as the final celebration</div>
+      </div>
+      <div style="margin-top:.75rem;text-align:right;">
+        <button onclick="markWeekDone(6,this)" style="background:#7C3AED;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;">✓ Week 6 done — 🎉 Showcase ready!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARENT MINDSET -->
+  <div class="card" style="background:linear-gradient(135deg,#1C1C2E,#2d2d4e);border:none;margin-top:.5rem;">
+    <div style="padding:1.25rem;">
+      <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8888aa;margin-bottom:.5rem;">Parent mindset — all 6 weeks</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div>
+          <div style="font-size:11px;font-weight:600;color:#f08080;margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.05em;">Avoid</div>
+          <div style="font-size:12px;color:#c0a0a0;line-height:1.8;">Writing prompts for him<br>Explaining code line by line<br>Fixing errors yourself<br>Googling and showing the answer<br>Saying "that's not how you do it"</div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:600;color:#a8d9c4;margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.05em;">Instead</div>
+          <div style="font-size:12px;color:#a0c0b8;line-height:1.8;">"What do you think that part does?"<br>Let him sit with broken things for 10 min<br>"Try describing the problem differently"<br>Celebrate ugly prototypes<br>Be the blindfolded user in Week 6</div>
+        </div>
+      </div>
+      <div style="margin-top:.9rem;font-size:12px;color:#8888aa;line-height:1.7;">When you don't know the answer: "I don't know — let's ask Claude and then figure out if Claude's answer is right." That's not weakness. That's the skill you're teaching. The sessions where you say "I have no idea, what do you think?" will be the ones JK remembers longest.</div>
+    </div>
+  </div>
+
+</div>
+  <div class="sec-hdr">
+    <h2>🤖 AI Lab <span class="jk-accent">· JK · 6 weeks at home</span></h2>
+    <p>One tab for everything — concept, parent prep, activity, build exercise, and resources. Read the parent column before each session. JK does the prompting column.</p>
+  </div>
+
+  <!-- CAPSTONE CARD -->
+  <div class="card" style="margin-bottom:1.25rem;background:linear-gradient(135deg,#1C1C2E,#2d2d4e);border:none;">
+    <div style="padding:1.1rem 1.25rem;">
+      <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8888aa;margin-bottom:.4rem;">The capstone — what JK is building</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:#fff;margin-bottom:.5rem;">A camera app that speaks what it sees — for people who are blind</div>
+      <div style="font-size:12px;color:#a0a0c0;line-height:1.7;margin-bottom:.8rem;">Point the phone camera at anything. Tap one button. The app describes what it sees out loud. Built entirely through prompting Claude — no copy-pasted code. Installed on iPhone as a real PWA. Demonstrated live at school.</div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:2px 10px;font-size:11px;color:#c0c0e0;">iPhone PWA</span>
+        <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:2px 10px;font-size:11px;color:#c0c0e0;">Claude Vision API</span>
+        <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:2px 10px;font-size:11px;color:#c0c0e0;">Prompt-only build</span>
+        <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:2px 10px;font-size:11px;color:#c0c0e0;">School showcase</span>
+      </div>
+    </div>
+  </div>
 <!-- MENU MODAL -->
 <div class="overlay" id="menu-modal">
   <div class="modal">
@@ -531,6 +935,7 @@ const DEF_CURR = [
   {Kid:'jk',Subject:'Public speaking',Weeks1_2:'Voice, posture, eye contact. 1-min self-introduction. Opinion sharing on everyday topics.',Weeks3_4:'Debates & group discussion. JAM (Just A Minute). Extempore on random topics.',Weeks5_6:'Ad pitch — present a product idea. Make a 60-sec Reel. Final showcase speech.'},
   {Kid:'jk',Subject:'Robotics & coding',Weeks1_2:'Introduction to Scratch — build simple animations & interactive stories.',Weeks3_4:'Basic robotics — sensors & actuators. Build & program a simple robot.',Weeks5_6:'Introduction to AI prompting. Build a simple AI-powered quiz or game.'},
   {Kid:'jk',Subject:'Chess',Weeks1_2:'Piece names, movement rules, board setup. Practice games — no pressure.',Weeks3_4:'Basic tactics — pins, forks, skewers. Opening principles.',Weeks5_6:'Endgame basics. Timed matches. Analyse own games.'},
+  {Kid:'jk',Subject:'AI Builder (Home)',Weeks1_2:'How AI thinks — neurons, pings, coalitions. How a browser renders HTML. Prompt as a question: ask Claude 5 ways, compare outputs.',Weeks3_4:'Prompt as a spec: build a camera app by describing what you want. Learn what an API, system prompt, and JSON are by using them.',Weeks5_6:'Prompt as a design brief: make it beautiful for a blind user. Add safety rules. Install as PWA on iPhone. Rehearse the showcase demo.'},
 ];
 const DEF_MENU = [
   {MealTime:'breakfast',Day:'Monday',MainItem:'Idli & sambar',SideNote:'With coconut chutney'},
@@ -867,6 +1272,119 @@ function showSec(id,tab){
   document.getElementById(id).classList.add('active'); tab.classList.add('active');
   if(id==='challenge'&&!jkLoaded){jkLoaded=true;jkLoad();}
   if(id==='wildexplorer'&&!pkLoaded){pkLoaded=true;pkLoad();}
+  if(id==='ailab') initAILab();
+}
+
+// ── MORE TABS DROPDOWN ─────────────────────────────────────────
+function toggleMoreTabs(btn){ document.getElementById('more-tabs').classList.toggle('open'); }
+function closeMoreTabs(){ document.getElementById('more-tabs').classList.remove('open'); }
+document.addEventListener('click',e=>{ if(!e.target.closest('.tab-more-wrap')) closeMoreTabs(); });
+
+// ── LITE / FULL MODE ───────────────────────────────────────────
+function setMode(m){
+  const ailab = document.getElementById('ailab');
+  const liteNote = document.getElementById('lite-note');
+  const lbl = document.getElementById('mode-label');
+  document.getElementById('btn-full').classList.toggle('active', m==='full');
+  document.getElementById('btn-lite').classList.toggle('active', m==='lite');
+  if(m==='lite'){
+    ailab.classList.add('lite-mode');
+    liteNote.style.display='block';
+    lbl.textContent='Lite Mode — 30 min/week';
+  } else {
+    ailab.classList.remove('lite-mode');
+    liteNote.style.display='none';
+    lbl.textContent='Full Builder — 90 min/week';
+  }
+  localStorage.setItem('ailabMode', m);
+}
+
+// ── COPY ZERO-TECH PROMPTS ─────────────────────────────────────
+function copyZT(el){
+  const btn = el.querySelector('.zt-copy');
+  const text = el.childNodes[0].textContent.trim();
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent='Copied!'; setTimeout(()=>btn.textContent='Copy', 1500);
+  });
+}
+
+// ── BUILDER RANK ───────────────────────────────────────────────
+const RANKS = [
+  {weeks:0, icon:'🌱', name:'Curious Rookie',    sub:'Complete Week 1 to level up'},
+  {weeks:1, icon:'⚡', name:'Prompt Pioneer',    sub:'You asked the right questions'},
+  {weeks:2, icon:'🔧', name:'Code Whisperer',    sub:'You made something exist'},
+  {weeks:3, icon:'🚀', name:'App Architect',      sub:'A real prototype. Real API. Real deal.'},
+  {weeks:4, icon:'🎨', name:'Experience Designer',sub:'You built for someone else. That\'s empathy.'},
+  {weeks:5, icon:'🛡️', name:'Safety Engineer',   sub:'You made it honest. Harder than it sounds.'},
+  {weeks:6, icon:'🏆', name:'AI Inventor',        sub:'End-to-end. Concept → showcase. Legendary.'},
+];
+const BADGES = [
+  {id:'b1', icon:'🧠', name:'Mind Reader',  desc:'Completed Week 1 — Neurons & pings'},
+  {id:'b2', icon:'💬', name:'Prompt Pro',   desc:'Completed Week 2 — Prototype Zero'},
+  {id:'b3', icon:'📡', name:'API Caller',   desc:'Completed Week 3 — Live API call'},
+  {id:'b4', icon:'🎯', name:'UX Thinker',   desc:'Completed Week 4 — Designed for blind users'},
+  {id:'b5', icon:'🔍', name:'Truth Teller', desc:'Completed Week 5 — Honesty guardrails'},
+  {id:'b6', icon:'🎤', name:'Showcase Star',desc:'Completed Week 6 — Presented at school'},
+];
+
+let weeksCompleted = JSON.parse(localStorage.getItem('aiWeeks')||'[]');
+
+function initAILab(){
+  renderRank();
+  renderBadges();
+  renderWeekButtons();
+  const savedMode = localStorage.getItem('ailabMode');
+  if(savedMode) setMode(savedMode);
+}
+
+function renderRank(){
+  const done = weeksCompleted.length;
+  const rank = RANKS[Math.min(done, RANKS.length-1)];
+  document.getElementById('rank-icon').textContent = rank.icon;
+  document.getElementById('rank-name').textContent = rank.name;
+  document.getElementById('rank-sub').textContent = rank.sub;
+  document.getElementById('rank-fill').style.width = (done/6*100)+'%';
+  const ww = document.getElementById('rank-weeks'); ww.innerHTML='';
+  [1,2,3,4,5,6].forEach(w=>{
+    const cls = weeksCompleted.includes(w)?'done': w===done+1?'current':'locked';
+    const emojis = ['🧠','💬','📡','🎯','🔍','🎤'];
+    ww.innerHTML += `<div class="rw ${cls}" title="Week ${w}">${cls==='done'?'✓':cls==='current'?emojis[w-1]:'🔒'}</div>`;
+  });
+}
+
+function renderBadges(){
+  const shelf = document.getElementById('badge-shelf'); shelf.innerHTML='';
+  BADGES.forEach((b,i)=>{
+    const earned = weeksCompleted.includes(i+1);
+    shelf.innerHTML += `<div class="badge ${earned?'earned':'locked'}" title="${b.desc}">
+      <div class="badge-icon">${b.icon}</div>
+      <div class="badge-name">${b.name}</div>
+    </div>`;
+  });
+}
+
+function renderWeekButtons(){
+  document.querySelectorAll('[onclick^="markWeekDone"]').forEach(btn=>{
+    const w = parseInt(btn.getAttribute('onclick').match(/\d+/)[0]);
+    if(weeksCompleted.includes(w)){
+      btn.textContent = w===6 ? '🏆 Showcase complete!' : `✓ Week ${w} complete`;
+      btn.style.opacity='.6'; btn.style.cursor='default';
+      btn.disabled=true;
+    }
+  });
+}
+
+function markWeekDone(week, btn){
+  if(weeksCompleted.includes(week)) return;
+  weeksCompleted.push(week);
+  weeksCompleted.sort((a,b)=>a-b);
+  localStorage.setItem('aiWeeks', JSON.stringify(weeksCompleted));
+  btn.disabled=true; btn.style.opacity='.6'; btn.style.cursor='default';
+  btn.textContent = week===6 ? '🏆 Showcase complete!' : `✓ Week ${week} complete`;
+  // small celebration
+  const rank = RANKS[Math.min(weeksCompleted.length, RANKS.length-1)];
+  setTimeout(()=>alert(`🎉 Week ${week} done!\n\nNew rank: ${rank.icon} ${rank.name}\n\n${rank.sub}`), 100);
+  renderRank(); renderBadges();
 }
 function flash(id){ const el=document.getElementById(id); el.style.display='inline'; setTimeout(()=>el.style.display='none',2500); }
 
@@ -874,51 +1392,51 @@ function flash(id){ const el=document.getElementById(id); el.style.display='inli
 //  CHAMPION CHALLENGE — JK
 // ════════════════════════════════════════════════════════════
 const JK_WEEKS=[
-  {label:'Week 1',theme:'Voice & Confidence',color:'#E1F5EE',border:'#5DCAA5',text:'#085041',desc:'Speak up, stand tall — your voice matters!'},
-  {label:'Week 2',theme:'Mind & Memory',color:'#EEEDFE',border:'#AFA9EC',text:'#3C3489',desc:'Train your brain — memory is a superpower.'},
-  {label:'Week 3',theme:'Social & Improv',color:'#FAEEDA',border:'#EF9F27',text:'#633806',desc:'Connect, laugh, and think on your feet.'},
-  {label:'Week 4',theme:'Joy & Celebration',color:'#EAF3DE',border:'#97C459',text:'#27500A',desc:'Celebrate everything you have become!'},
+  {label:'Week 1',theme:'Know Your Voice',color:'#E1F5EE',border:'#5DCAA5',text:'#085041',desc:'Self-awareness first. Before you can move an audience, you need to know who you are as a speaker.'},
+  {label:'Week 2',theme:'Walk Through Fear',color:'#EEEDFE',border:'#AFA9EC',text:'#3C3489',desc:'Fear is not the enemy. Avoiding it is. This week you practise walking through discomfort on purpose.'},
+  {label:'Week 3',theme:'Story & Structure',color:'#FAEEDA',border:'#EF9F27',text:'#633806',desc:'Every great speech is a great story. Hook, body, close — and the specific language that makes it vivid.'},
+  {label:'Week 4',theme:'Command the Room',color:'#EAF3DE',border:'#97C459',text:'#27500A',desc:'Eye contact, body language, vocal variety, and thinking on your feet. Showcase week.'},
 ];
 const JK_DAYS=[
-  {name:'Mirror Talk',desc:'Stand in front of a mirror. Say 3 things you like about yourself out loud.',tag:'voice'},
-  {name:'Power Pose',desc:'Strike your best superhero pose for 2 minutes. Feel the energy!',tag:'mind'},
-  {name:'Story in 60 Seconds',desc:'Tell a made-up story in exactly 60 seconds. No stopping!',tag:'voice'},
-  {name:'Memory Palace',desc:'Pick 5 objects in a room. Close your eyes. Name them all.',tag:'memory'},
-  {name:'Compliment Chain',desc:'Give one genuine compliment to everyone in your family today.',tag:'social'},
-  {name:'The Brave Moment',desc:'Do one thing today that feels a little scary. Write it down.',tag:'mind'},
-  {name:'Tongue Twister Champion',desc:'Learn one tongue twister and say it perfectly 3 times fast.',tag:'voice'},
-  {name:'Emotion Charades',desc:'Act out 5 different emotions — family guesses each one.',tag:'improv'},
-  {name:'Backwards Story',desc:'Tell a story starting from the end and working backwards.',tag:'improv'},
-  {name:'Debate Me',desc:'Pick a fun topic (e.g. "Dogs vs Cats") and argue both sides.',tag:'voice'},
-  {name:'Kindness Map',desc:'Draw a map of your day and mark every kind thing you did.',tag:'social'},
-  {name:'Speed Memory',desc:'Look at 10 objects for 30 seconds. Cover them. Name all 10.',tag:'memory'},
-  {name:'Silence is Golden',desc:'Go 15 minutes using only gestures and facial expressions. No words!',tag:'improv'},
-  {name:'Gratitude Rap',desc:'Make up a short rap about 3 things you are grateful for.',tag:'joy'},
-  {name:'Teach Me',desc:'Explain any topic you know well to a family member in 3 minutes.',tag:'voice'},
-  {name:'Confidence Walk',desc:'Walk around the house like you own the place — head high, big steps!',tag:'mind'},
-  {name:'Secret Language',desc:'Invent 5 code words with a sibling or parent. Use them all day.',tag:'social'},
-  {name:'Memory Story',desc:'Create a funny story that includes 10 random words to remember them.',tag:'memory'},
-  {name:'Yes And...',desc:'Play "Yes And" improv with a partner — accept every idea and add to it.',tag:'improv'},
-  {name:'Laugh Factory',desc:'Tell 3 jokes you made up yourself. Perform them with full energy!',tag:'joy'},
-  {name:'Interview Time',desc:'Interview a family member for 5 minutes. Ask 5 thoughtful questions.',tag:'social'},
-  {name:'Mindful Minute',desc:'Sit quietly for 1 minute. Notice 5 things you can hear right now.',tag:'mind'},
-  {name:'Ad Pitch',desc:'Invent a product and pitch it to your family in 2 minutes.',tag:'voice'},
-  {name:'Emotion Playlist',desc:'Name a song for each of these: happy, sad, brave, silly, calm.',tag:'mind'},
-  {name:'Challenge Day',desc:'Set yourself a small challenge today and complete it before dinner.',tag:'mind'},
-  {name:'Family TED Talk',desc:'Give a 3-minute talk on anything you are passionate about.',tag:'voice'},
-  {name:'Random Acts',desc:'Do 3 random acts of kindness today without anyone knowing it was you.',tag:'social'},
-  {name:'Freeze Frame',desc:'Play freeze-frame acting — freeze mid-action and hold it for 10 seconds.',tag:'improv'},
-  {name:'Letter to Future Me',desc:'Write a short letter to yourself to read at the end of summer.',tag:'mind'},
-  {name:'Celebration Day',desc:'You did it! Pick your favourite challenge and do it one more time — perfectly.',tag:'joy'},
+  {name:'Awesomeness Inventory',desc:'Write 10 things you are genuinely good at — skills, qualities, anything real. Read the full list aloud to a family member without skipping or downplaying a single one.',tag:'self'},
+  {name:'The Mirror Speech',desc:'Stand at a mirror. Introduce yourself as if meeting someone important for the first time: your name, one fact about you, and one thing you love. Do it 3 times until your body stops fidgeting.',tag:'voice'},
+  {name:'Strength Spotter',desc:'Watch or talk to someone you admire today. Write 3 specific things they do that make them compelling — not general praise, but exact behaviours. Which of those do you already have?',tag:'self'},
+  {name:'Power Stance',desc:'Before breakfast, stand in the most confident posture you can imagine for 2 full minutes. Notice the physical difference before vs after. Your body changes your mindset before your mindset changes your body.',tag:'self'},
+  {name:'Emotion Precision',desc:'At 3 different points today, stop and name exactly what you are feeling and why. Not "fine" or "okay" — be surgically precise: "restless because I am waiting for something I cannot control."',tag:'self'},
+  {name:'Give & Receive',desc:'Give 3 specific genuine compliments today. When you receive one, say only "thank you" — do not deflect, qualify, or brush it off. Receiving well without shrinking is a skill most adults have never learned.',tag:'social'},
+  {name:'First Draft Talk',desc:'Write the first draft of a 1-minute talk on something you genuinely care about. Do not perform it yet. Just get the idea, the feeling, and why it matters to you down on paper.',tag:'voice'},
+  {name:'Name the Monster',desc:'Write down one specific thing about speaking in public that makes you nervous. Be precise — not "I get nervous" but "I am afraid people will notice my voice shaking during the first sentence." Named fears shrink.',tag:'fear'},
+  {name:'One Brave Thing',desc:'Do one thing today that creates genuine discomfort. It does not need to be speaking. Just something you would normally avoid. Write what actually happened afterwards — not what you imagined would happen.',tag:'fear'},
+  {name:'Tongue Twister Gauntlet',desc:'Learn "She sells seashells by the seashore" and say it perfectly 5 times fast. Your brain will resist. Push through. That resistance is the fear response — notice it, label it, keep going anyway.',tag:'voice'},
+  {name:'Start the Conversation',desc:'Today, initiate a conversation with someone you do not usually talk to — a neighbour, a shopkeeper, a relative you find awkward. One full real exchange. Debrief: was the anticipation worse than the reality?',tag:'fear'},
+  {name:'Fail on Purpose',desc:'Tell a story to your family and deliberately stumble on a word — then recover and keep going without apologising. Repeat 3 times. The point: audiences forget mistakes almost instantly. Speakers never do.',tag:'fear'},
+  {name:'The Fear Ladder',desc:'Draw a ladder with 7 rungs. Bottom = speaking situation that feels easy. Top = your most terrifying one. Fill in the 5 rungs in between. You have already climbed at least the first two this week.',tag:'fear'},
+  {name:'The Brave Talk',desc:'Deliver your Week 1 draft talk to a live audience — family counts. No notes. Eye contact with at least one person for at least 3 seconds. 60 seconds. Go.',tag:'voice'},
+  {name:'Story Autopsy',desc:'Think of the best story you have ever heard anyone tell. What made it stick? Write 3 specific ingredients — a detail, a moment, a feeling. These are your tools. Do not move on until you have all 3.',tag:'story'},
+  {name:'Three Hooks',desc:'Every great talk opens with a hook that makes the audience lean in. Write 3 different hooks for your talk: one question, one surprising fact, one vivid scene. Test all 3 on a family member. Which lands best?',tag:'story'},
+  {name:'60-Second True Story',desc:'Tell a true story from your own life in exactly 60 seconds — timed. It must contain: a moment something changed, how you felt in that moment, and what you took from it. Specificity beats drama every time.',tag:'story'},
+  {name:'Interview Someone',desc:'Interview a family member for exactly 5 minutes. Ask about the best decision they ever made. Do not interrupt. Do not finish their sentences. Great speakers are built on great listening — this is that training.',tag:'social'},
+  {name:'PREP Framework',desc:'Use the PREP structure for any opinion: Point, Reason, Example, Point again. Pick any topic — homework, sport, food — and argue it using PREP in under 90 seconds. This is the skeleton of every persuasive speech.',tag:'story'},
+  {name:'Word Upgrade',desc:'List 5 words you use constantly — good, nice, bad, stuff, things. Find 3 vivid specific replacements for each. Use all 5 upgraded versions in real conversation today. Specific language is the difference between forgettable and memorable.',tag:'voice'},
+  {name:'Story Performance',desc:'Tell your strongest story from this week — polished, with the best hook, with upgraded vocabulary — to the most honest audience you can find. Ask for two specific things that worked and one that did not.',tag:'story'},
+  {name:'Eye Contact Training',desc:'Have a 3-minute conversation making deliberate eye contact — hold it for 3 to 5 seconds naturally before moving on. Count how many times you break away first. Aim to reduce that number in the next conversation.',tag:'delivery'},
+  {name:'Body Language Audit',desc:'Record yourself on video talking for 2 minutes about anything. Watch it back on mute. What is your body communicating without a single word? Arms? Posture? Hands? Your body is already giving a speech — make it say the right thing.',tag:'delivery'},
+  {name:'Voice Dial',desc:'Read the same paragraph 4 different ways: slow and quiet, fast and loud, dramatic with long pauses, warm and conversational. Your voice is an instrument with a full range. Most people use 10% of it.',tag:'voice'},
+  {name:'JAM — Just A Minute',desc:'Pick any topic — school, cricket, food, anything. Speak on it for exactly 1 minute without hesitating, repeating yourself, or going off topic. Family can challenge you if you break the rules. This is a classic Toastmasters exercise.',tag:'delivery'},
+  {name:'The 30-Second Introduction',desc:'Craft a 30-second introduction of yourself for a new situation — first day at a new school, meeting a coach, joining a club. Firm handshake, eye contact, name, one interesting fact, one question back to them. Practise on every family member.',tag:'delivery'},
+  {name:'Feedback in Two Plus One',desc:'Watch any short speech or presentation on YouTube — a TED-Ed talk, a student speech, anything. Write exactly 2 things the speaker did brilliantly and 1 specific thing that would make it stronger. Feedback is a speaking skill and a leadership skill.',tag:'social'},
+  {name:'Full Dress Rehearsal',desc:'Full run of your showcase talk: 2 minutes, memorised opening hook, one true story, strong close with your point. Run it twice. Time it. After each run, ask for feedback in the two-plus-one format: 2 strengths, 1 growth area.',tag:'voice'},
+  {name:'Showcase Talk',desc:'Deliver your best 2-minute talk to the whole family — no notes, eye contact, your hook, your story, your point. This is your moment. You have walked through fear, built your story, and trained your body. Own the room.',tag:'delivery'},
+  {name:'Teach It',desc:'Take the single most useful thing you learned this month and teach it to a younger person — PK, a cousin, anyone. Explain it clearly enough that they could actually use it. Teaching is the deepest test of understanding.',tag:'social'},
 ];
 const JK_MOODS=[['😀','strong'],['😄','happy'],['😌','calm'],['🤔','curious'],['😎','brave']];
 const JK_QUESTIONS=[
-  'What was the bravest thing I did today?',
-  'Did I surprise myself with anything today?',
-  'What is one thing I want to do better tomorrow?',
-  'Who did I help or connect with today?',
-  'What made me feel most confident today?',
-  'If today was a movie, what would I title it?',
+  'What is one moment today when I felt genuinely confident — and what specifically caused it?',
+  'Did I walk through any discomfort today, even a small one? What was on the other side of it?',
+  'Who did I really listen to today — not just hear? What did I learn that I would not have if I had done the talking?',
+  'What story happened to me today that would be worth telling out loud to someone?',
+  'If I had to give a 30-second speech about today to a stranger, what would the one main point be?',
+  'What is one word that describes the speaker I am right now — and one word for the speaker I am becoming?',
 ];
 
 let jkState={
